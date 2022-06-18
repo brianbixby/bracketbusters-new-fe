@@ -40,7 +40,7 @@ function GroupAllContainer(props) {
       .catch(() => logError);
   }, []);
 
-  const onGroupClick = (group, e) => {
+  const onGroupClick = group => {
     props.groupFetchRequest(group);
     return props
       .groupProfilesFetch(group.users)
@@ -51,7 +51,7 @@ function GroupAllContainer(props) {
       .then(() => navigate(`/group/${group._id}`))
       .catch(logError);
   };
-  const handleGroupJoin = (group, e) => {
+  const handleGroupJoin = group => {
     if (props.groups.some(groups => groups._id === group._id)) {
       onGroupClick(group);
     } else {

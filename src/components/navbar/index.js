@@ -13,6 +13,7 @@ import linkedin from './../helpers/assets/icons/linkedin.icon.svg';
 function Navbar(props) {
   let navigate = useNavigate();
   const [visible, setVisible] = useState(false);
+  // eslint-disable-next-line
   const [intro, setIntro] = useState(false);
 
   useEffect(() => {

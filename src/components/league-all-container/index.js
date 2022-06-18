@@ -38,7 +38,7 @@ function LeagueAllContainer(props) {
       .catch(() => logError);
   }, []);
 
-  const onLeagueClick = (league, e) => {
+  const onLeagueClick = league => {
     props.leagueFetchRequest(league);
     return props
       .messageBoardLeagueFetch(league._id)
@@ -49,7 +49,7 @@ function LeagueAllContainer(props) {
       .then(() => navigate(`/league/${league._id}`))
       .catch(logError);
   };
-  const handleLeagueJoin = (league, e) => {
+  const handleLeagueJoin = league => {
     if (props.leagues.some(leagues => leagues._id === league._id)) {
       onLeagueClick(league);
     } else {

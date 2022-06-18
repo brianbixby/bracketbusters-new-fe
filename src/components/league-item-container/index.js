@@ -83,7 +83,7 @@ function LeagueContainer(props) {
     let dateArr = new Date(date).toDateString().split(' ');
     return `${dateArr[1]} ${dateArr[2]}, ${dateArr[3]}`;
   };
-  const onLeagueClick = (league, e) => {
+  const onLeagueClick = league => {
     props.leagueFetchRequest(league);
     return props
       .messageBoardLeagueFetch(league._id)
@@ -92,7 +92,7 @@ function LeagueContainer(props) {
       .then(() => navigate(`/league/${league._id}`))
       .catch(logError);
   };
-  const onGroupClick = (group, e) => {
+  const onGroupClick = group => {
     props.groupFetchRequest(group);
     return props
       .groupProfilesFetch(group.users)
@@ -101,7 +101,7 @@ function LeagueContainer(props) {
       .then(() => navigate(`/group/${group._id}`))
       .catch(logError);
   };
-  const handleBoundTopPublicLeagueClick = (league, e) => {
+  const handleBoundTopPublicLeagueClick = league => {
     if (props.leagues.some(leagues => leagues._id === league._id)) {
       onLeagueClick(league);
     } else {
@@ -113,7 +113,7 @@ function LeagueContainer(props) {
         .catch(logError);
     }
   };
-  const handleBoundTopPublicGroupClick = (group, e) => {
+  const handleBoundTopPublicGroupClick = group => {
     if (props.groups.some(groups => groups._id === group._id)) {
       onGroupClick(group);
     } else {

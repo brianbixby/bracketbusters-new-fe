@@ -94,6 +94,7 @@ class UserAuthForm extends React.Component {
     e.preventDefault();
     if (!this.state.error) {
       this.props.onComplete(this.state, this.handleError).catch(err => {
+        console.log('err: ', err);
         this.setState({
           error: true,
           submitted: true,

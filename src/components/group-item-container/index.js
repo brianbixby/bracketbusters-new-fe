@@ -80,7 +80,7 @@ function GroupItemContainer(props) {
   //     .catch(logError);
   // };
 
-  const onLeagueClick = (league, e) => {
+  const onLeagueClick = league => {
     props.leagueFetchRequest(league);
     return props
       .messageBoardLeagueFetch(league._id)
@@ -91,7 +91,7 @@ function GroupItemContainer(props) {
       .then(() => navigate(`/league/${league._id}`))
       .catch(logError);
   };
-  const onGroupClick = (group, e) => {
+  const onGroupClick = group => {
     props.groupFetchRequest(group);
     return props
       .groupProfilesFetch(group.users)
@@ -102,7 +102,7 @@ function GroupItemContainer(props) {
       .then(() => navigate(`/group/${group._id}`))
       .catch(logError);
   };
-  const handleBoundTopPublicLeagueClick = (league, e) => {
+  const handleBoundTopPublicLeagueClick = league => {
     if (props.leagues.some(leagues => leagues._id === league._id)) {
       onLeagueClick(league);
     } else {
@@ -114,7 +114,7 @@ function GroupItemContainer(props) {
         .catch(logError);
     }
   };
-  const handleBoundTopPublicGroupClick = (group, e) => {
+  const handleBoundTopPublicGroupClick = group => {
     if (props.groups.some(groups => groups._id === group._id)) {
       onGroupClick(group);
     } else {
