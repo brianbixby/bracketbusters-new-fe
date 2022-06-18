@@ -8,6 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./components/app";
 import appCreateStore from "./lib/app-create-store.js";
 
+import reportWebVitals from './reportWebVitals';
+
 const rootEl = document.getElementById("root");
 const root = createRoot(rootEl);
 
@@ -25,3 +27,6 @@ let AppContainer = () => {
 };
 
 root.render(<AppContainer />);
+
+reportWebVitals(console.log);
+// https://bit.ly/CRA-vitals
