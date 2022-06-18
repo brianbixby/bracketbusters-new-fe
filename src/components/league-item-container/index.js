@@ -1,6 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { tokenSignInRequest } from '../../actions/userAuth-actions.js';
 import { userProfileFetchRequest, groupProfilesFetchRequest } from '../../actions/userProfile-actions.js';
@@ -18,27 +18,32 @@ import MessageBoardContainer from '../message-board-container';
 import Table from '../helpers/table';
 import BannerAd from '../helpers/bannerAd';
 import { userValidation, logError, renderIf } from '../../lib/util.js';
+import nbalogo from './../helpers/assets/nba-logo.png';
+import basketball from './../helpers/assets/basketball.png';
+import kd from './../helpers/assets/2.png';
+import users from './../helpers/assets/icons/users.icon.svg';
+import info from './../helpers/assets/icons/info.icon.svg';
 
 function LeagueContainer(props) {
+    const { leagueID } = useParams();
     let navigate = useNavigate();
     const [scoreBoardsShown, setScoreBoardsShown] = useState(10);
 
     useEffect(() => {
-        return userValidation(props, navigate)
+        userValidation(props, navigate)
         .then(() => {
           if (Object.entries(props.currentLeague).length === 0) {
-            return props.leagueFetch(window.location.href.split('/league/')[1])
+            props.leagueFetch(leagueID)
               .then(league => props.messageBoardLeagueFetch(league._id))
               .then(mb => props.commentsFetch(mb.comments))
           }
-          return ;
         })
-        .then(() => props.scoreBoardsFetch(window.location.href.split('/league/')[1]))
-        .then(() => props.userPicksFetch(window.location.href.split('/league/')[1]))
+        .then(() => props.scoreBoardsFetch(leagueID))
+        .then(() => props.userPicksFetch(leagueID))
         .then(picks => {
           let gameIDArr = [];
           gameIDArr.push(picks.map(userPick => userPick.gameID._id));
-          return props.gamesFetch(props.currentLeague.sportingEventID, gameIDArr)
+          props.gamesFetch(props.currentLeague.sportingEventID, gameIDArr)
         })
         .then(() => window.scrollTo(0, 0))
         .catch(() => logError);
@@ -51,21 +56,17 @@ function LeagueContainer(props) {
   const onLeagueClick = (league, e) => {
     props.leagueFetchRequest(league);
     return props.messageBoardLeagueFetch(league._id)
-      .then(messageBoard => {
-        props.commentsFetch(messageBoard.comments);
-      })
+      .then(messageBoard => props.commentsFetch(messageBoard.comments))
       .then(()=> props.userPicksFetch(league._id))
-      .then( () =>  props.history.push(`/league/${league._id}`))
+      .then(() =>  navigate(`/league/${league._id}`))
       .catch(logError);
   };
   const onGroupClick = (group, e) => {
     props.groupFetchRequest(group)
     return props.groupProfilesFetch(group.users)
       .then(() => props.messageBoardGroupFetch(group._id))
-      .then(messageBoard => {
-        props.commentsFetch(messageBoard.comments);
-      })
-      .then(() =>  props.history.push(`/group/${group._id}`))
+      .then(messageBoard => props.commentsFetch(messageBoard.comments))
+      .then(() =>  navigate(`/group/${group._id}`))
       .catch(logError);
   };
   const handleBoundTopPublicLeagueClick = (league, e) => {
@@ -76,7 +77,7 @@ function LeagueContainer(props) {
       return props.leagueJoin(league._id)
       .then(() => props.messageBoardLeagueFetch(league._id))
       .then(messageBoard => props.commentsFetch(messageBoard.comments))
-      .then(() => props.history.push(`/league/${league._id}`))
+      .then(() => navigate(`/league/${league._id}`))
       .catch(logError);
     }
   };
@@ -89,13 +90,13 @@ function LeagueContainer(props) {
         .then(() => props.groupJoin(group._id))
         .then(() => props.messageBoardGroupFetch(group._id))
         .then(messageBoard => props.commentsFetch(messageBoard.comments))
-        .then(() => props.history.push(`/group/${group._id}`))
+        .then(() => navigate(`/group/${group._id}`))
         .catch(logError);
     }
   };
 //   const handleComplete = league => {
 //     return props.leagueUpdate(league)
-//       .then(() => props.history.push(`/league/${props.league._id}`))
+//       .then(() => navigate(`/league/${props.league._id}`))
 //       .catch(logError);
 //   };
   const handleUpdate = userPick => {
@@ -115,16 +116,12 @@ function LeagueContainer(props) {
   };
     let currentLeague = props.currentLeague;
     // let scoreBoards = 'scores';
-    let nbalogo = require('./../helpers/assets/nba-logo.png');
     let formTypeLeague = 'league';
     let formTypeGroup = 'group';
     let topScores = 'scores';
-    let basketball = require('./../helpers/assets/basketball.png');
-    let kd = require('./../helpers/assets/2.png');
     let leaguePhoto = currentLeague.image ? <img className='createImg' src={currentLeague.image} alt="current league" /> : <img className='createImg' src={kd} alt="league placeholder" />;
     let scores = props.scoreBoards.slice(0, scoreBoardsShown);
-    let users = require('./../helpers/assets/icons/users.icon.svg');
-    let info = require('./../helpers/assets/icons/info.icon.svg');
+
     return (
       <div className='leagueItem-page page-outer-div' id='top'>
         <div className='grid-container'>

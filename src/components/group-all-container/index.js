@@ -14,6 +14,8 @@ import GroupAllPrivateForm from '../group-all-private-form';
 import Table from '../helpers/table';
 import BannerAd from '../helpers/bannerAd';
 import { userValidation, logError } from './../../lib/util.js';
+import users from './../helpers/assets/icons/users.icon.svg';
+import lock from './../helpers/assets/icons/lock.icon.svg';
 
 function GroupAllContainer(props) {
     let navigate = useNavigate();
@@ -32,7 +34,7 @@ function GroupAllContainer(props) {
       .then(messageBoard => {
         props.commentsFetch(messageBoard.comments);
       })
-      .then(() =>  props.history.push(`/group/${group._id}`))
+      .then(() =>  navigate(`/group/${group._id}`))
       .catch(logError);
   };
   const handleGroupJoin = (group, e) => {
@@ -44,7 +46,7 @@ function GroupAllContainer(props) {
         .then(() => props.groupJoin(group._id))
         .then(() => props.messageBoardGroupFetch(group._id))
         .then(messageBoard => props.commentsFetch(messageBoard.comments))
-        .then(() => props.history.push(`/group/${group._id}`))
+        .then(() => navigate(`/group/${group._id}`))
         .catch(logError);
     }
   };
@@ -68,7 +70,7 @@ function GroupAllContainer(props) {
         props.commentsFetch(messageBoard.comments);
         return messageBoard.groupID
       })
-      .then(groupID => props.history.push(`/group/${groupID}`))
+      .then(groupID => navigate(`/group/${groupID}`))
       .catch(logError);
     }
   };
@@ -79,8 +81,6 @@ function GroupAllContainer(props) {
   };
     let tableType = 'group';
     let groups = props.publicGroups.slice(0, groupsShown);
-    let users = require('./../helpers/assets/icons/users.icon.svg');
-    let lock = require('./../helpers/assets/icons/lock.icon.svg');
     return (
       <div className='leagues-container page-outer-div'>
         <div className='grid-container'>

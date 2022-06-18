@@ -22,7 +22,7 @@ export const commentCreateRequest = comment => (dispatch, getState) => {
     .send(comment)
     .then(res => {
       dispatch(commentCreate(res.body));
-      return res;
+      return res.body;
     });
 };
 
@@ -32,7 +32,7 @@ export const commentFetchRequest = commentID => (dispatch, getState) => {
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(commentFetch(res.body.data));
-      return res;
+      return res.body;
     });
 };
 

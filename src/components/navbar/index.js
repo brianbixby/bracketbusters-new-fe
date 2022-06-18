@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Avatar from '../helpers/avatar';
 import { signOut } from '../../actions/userAuth-actions.js';
@@ -11,52 +11,52 @@ import github from './../helpers/assets/icons/github.icon.svg';
 import linkedin from './../helpers/assets/icons/linkedin.icon.svg';
 
 
-class Navbar extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={ visible: false, intro: false};
-  }
-  componentWillMount() {
-    this.tokenCheck();
-  }
-  tokenCheck = () => {
-    if(!this.props.userAuth) {
+function Navbar(props) {
+    let navigate = useNavigate();
+    const [visible, setVisible] = useState(false);
+    const [intro, setIntro] = useState(false);
+
+    useEffect(() => {
+        tokenCheck();
+    }, [])
+
+  const tokenCheck = () => {
+    if(!props.userAuth) {
       let token = localStorage.token;  
-      if(!token) this.setState({ introNav: true })
+      if(!token) setIntro(true)
     }
     else {
-      this.setState({ intro: false })
+        setIntro(false);
     }
   };
-  handleSignOut = () => {
-    this.props.signOut();
-    this.props.history.push('/');
+  const handleSignOut = () => {
+    props.signOut();
+    navigate('/');
   };
-  render() {
-    let profileImage = this.props.userProfile && this.props.userProfile.image ? <Avatar url={this.props.userProfile.image} /> : <img className='noProfileImageNav' src={user} alt="user" />;
-    let profileLink = this.props.userProfile && this.props.userProfile._id ? `/user/${this.props.userProfile._id}` : '';
+    let profileImage = props.userProfile && props.userProfile.image ? <Avatar url={props.userProfile.image} /> : <img className='noProfileImageNav' src={user} alt="user" />;
+    let profileLink = props.userProfile && props.userProfile._id ? `/user/${props.userProfile._id}` : '';
     return (
       <header className={classToggler({
         'navbar': true,
-        'introNavbar': !this.props.userAuth,
+        'introNavbar': !props.userAuth,
       })}>
         <nav>
           <div className='logo'>
-              <Link to='/' className={classToggler({ 'link': true, 'logo-text': true, 'intro-text': !this.props.userAuth })}><span className='bracket'>BRACKET</span><span className='light'>BUSTERS</span></Link>
+              <Link to='/' className={classToggler({ 'link': true, 'logo-text': true, 'intro-text': !props.userAuth })}><span className='bracket'>BRACKET</span><span className='light'>BUSTERS</span></Link>
           </div>
           <ul className='socials'>
             <li className='social dropdown'>
-              {renderIf(this.props.userAuth,
+              {renderIf(props.userAuth,
                 <div>
-                  <div className='avatarDiv' onClick={() => this.setState({ visible: !this.state.visible })} >
+                  <div className='avatarDiv' onClick={() => setVisible(!visible)} >
                     <img className='caretDown' src={caretDown} alt="caret down"/>
                     {profileImage}
                   </div>
-                  <div className={ this.state.visible ? 'slideIn dropdownDiv' : 'slideOut dropdownDiv' }>
-                    <Link to={profileLink} className='link' onClick={() => this.setState({ visible: !this.state.visible })}>profile</Link>
-                    <Link to='/leagues' className='link' onClick={() => this.setState({ visible: !this.state.visible })}>leagues</Link>
-                    <Link to='/groups' className='link' onClick={() => this.setState({ visible: !this.state.visible })}>groups</Link>
-                    <p className='logout link' onClick={this.handleSignOut}>logout</p>
+                  <div className={visible ? 'slideIn dropdownDiv' : 'slideOut dropdownDiv' }>
+                    <Link to={profileLink} className='link' onClick={() => setVisible(!visible)}>profile</Link>
+                    <Link to='/leagues' className='link' onClick={() => setVisible(!visible)}>leagues</Link>
+                    <Link to='/groups' className='link' onClick={() => setVisible(!visible)}>groups</Link>
+                    <p className='logout link' onClick={handleSignOut}>logout</p>
                   </div>
                 </div>
               )}
@@ -71,15 +71,14 @@ class Navbar extends React.Component {
         </nav>
     </header>
     );
-  }
 }
 
-let mapStateToProps = state => ({
+const mapStateToProps = state => ({
   userAuth: state.userAuth,
   userProfile: state.userProfile,
 });
 
-let mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(signOut()),
 });
 

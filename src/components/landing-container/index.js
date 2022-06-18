@@ -20,6 +20,8 @@ import CreateSection from '../helpers/createSection';
 import Table from '../helpers/table';
 import BannerAd from '../helpers/bannerAd';
 import { userValidation, logError, renderIf } from './../../lib/util.js';
+import basketball from './../helpers/assets/basketball.png';
+import users from './../helpers/assets/icons/users.icon.svg';
 import './../../style/main.scss';
 
 function LandingContainer(props) {
@@ -43,7 +45,7 @@ function LandingContainer(props) {
         props.commentsFetch(messageBoard.comments);
         return messageBoard.leagueID
       })
-      .then(leagueID => props.history.push(`/league/${leagueID}`))
+      .then(leagueID => navigate(`/league/${leagueID}`))
       .catch(logError);
   };
   const handleGroupCreate = groupInput => {
@@ -55,7 +57,7 @@ function LandingContainer(props) {
       })
       .then(messageBoard => props.commentsFetch(messageBoard.comments))
       .then(() => props.groupProfilesFetch(group.users))
-      .then(groupID => props.history.push(`/group/${group._id}`))
+      .then(groupID => navigate(`/group/${group._id}`))
       .catch(logError);
   };
   const handleProfileUpdate = profile => {
@@ -69,7 +71,7 @@ function LandingContainer(props) {
         props.commentsFetch(messageBoard.comments);
       })
       .then(()=> props.userPicksFetch(league._id))
-      .then( () =>  props.history.push(`/league/${league._id}`))
+      .then( () =>  navigate(`/league/${league._id}`))
       .catch(logError);
   };
   const onGroupClick = (group, e) => {
@@ -79,7 +81,7 @@ function LandingContainer(props) {
       .then(messageBoard => {
         props.commentsFetch(messageBoard.comments);
       })
-      .then(() =>  props.history.push(`/group/${group._id}`))
+      .then(() =>  navigate(`/group/${group._id}`))
       .catch(logError);
   };
   const handleBoundTopPublicLeagueClick = (league, e) => {
@@ -90,7 +92,7 @@ function LandingContainer(props) {
       return props.leagueJoin(league._id)
       .then(() => props.messageBoardLeagueFetch(league._id))
       .then(messageBoard => props.commentsFetch(messageBoard.comments))
-      .then(() => props.history.push(`/league/${league._id}`))
+      .then(() => navigate(`/league/${league._id}`))
       .catch(logError);
     }
   };
@@ -103,19 +105,17 @@ function LandingContainer(props) {
         .then(() => props.groupJoin(group._id))
         .then(() => props.messageBoardGroupFetch(group._id))
         .then(messageBoard => props.commentsFetch(messageBoard.comments))
-        .then(() => props.history.push(`/group/${group._id}`))
+        .then(() => navigate(`/group/${group._id}`))
         .catch(logError);
     }
   };
-  const handleRedirect = link => props.history.push(link);
+  const handleRedirect = link => navigate(link);
     // let { params } = props.match;
     // let handleComplete = params.userAuth === 'signin' ? handleSignin : handleSignup;
     let formTypeLeague = 'league';
     let formTypeGroup = 'group';
     let topScores = 'scores';
     let profileAction ='create';
-    let basketball = require('./../helpers/assets/basketball.png');
-    let users = require('./../helpers/assets/icons/users.icon.svg');
     // let slide = require('./../helpers/assets/3.png');
     return (
       <section className='landing-page page-outer-div'>

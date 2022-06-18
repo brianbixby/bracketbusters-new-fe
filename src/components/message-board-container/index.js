@@ -1,49 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import CommentForm from '../comment-form';
 import CommentItem from '../comment-item';
-// import { messageBoardFetchRequest } from '../../actions/messageBoard-actions.js';
 import { commentCreateRequest, commentFetchRequest, commentsFetchRequest } from '../../actions/comment-actions.js';
 import Modal from '../helpers/modal';
 import { logError, renderIf } from './../../lib/util.js';
+import placeholderImage from './../helpers/assets/profilePlaceholder.png';
+import commentsIcon from './../helpers/assets/icons/comments.icon.svg';
 
 
-class MessageBoardContainer extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = { launchCommentModal: false };
-  }
-  componentDidMount() {
-    if (this.props.commentsArray) {
-      this.props.commentsFetch(this.props.commentsArray)
-        .catch(err => logError(err));
+function MessageBoardContainer(props) {
+    const [launchCommentModal, setLaunchCommentModal] = useState(false);
+
+    useEffect(() => {
+        if (props.commentsArray) {
+            props.commentsFetch(props.commentsArray)
+              .catch(err => logError(err));
+          }
+    }, []);
+
+    useLayoutEffect(() => {
+        return () => {
+            setLaunchCommentModal(false);
+        }
+    }, []);
+
+  const handleComplete = comment => {
+    if (props.userProfile.image) {
+        comment.image = props.userProfile.image;
     }
-  }
-  componentWillReceiveProps(props) {
-    if (props.commentsArray) 
-      this.setState({commentCount: props.commentsArray.length});
-  }
-  componentWillUnmount() {
-    this.setState({ launchCommetnModal: false });
-  }
-  handleComplete = comment => {
-    comment.username = this.props.userProfile.username;
-    if(this.props.userProfile.image)
-      comment.image = this.props.userProfile.image;
-    comment.messageBoardID = this.props.mBoardId;
-    return this.props.commentCreate(comment)
-      .then(() => {
-        this.setState(prevState => {
-          return {commentCount: prevState.commentCount + 1}
-       })
-      })
-      .catch(console.error);
+    comment.messageBoardID = props.mBoardId;
+    props.commentCreate(comment)
+    .catch(err => logError(err));
   };
-  render(){
-    let comments = this.props.comments.slice(0, 5)
-    let placeholderImage = require('./../helpers/assets/profilePlaceholder.png');
-    let profileImage = this.props.userProfile && this.props.userProfile.image ? this.props.userProfile.image : placeholderImage;
-    let commentsIcon = require('./../helpers/assets/icons/comments.icon.svg');
+    let comments = props.comments.slice(0, 5)
+    let profileImage = props.userProfile && props.userProfile.image ? props.userProfile.image : placeholderImage;
+
     return (
       <div className='wideSectionWrapper messageBoardOuter'>
         <div className='outer messageboardHeader'>
@@ -52,12 +44,12 @@ class MessageBoardContainer extends React.Component {
             <p className='headerText'>MESSAGE BOARD </p>
           </div>
           <div className='outerRight'>
-            <p className='seeAll' onClick={() => this.setState({ launchCommentModal: true })}>See All</p>
+            <p className='seeAll' onClick={() => setLaunchCommentModal(true)}>See All</p>
           </div>
         </div>
         <div className='messageBoard-container'>
           <div className='messageBoard-wrapper'>
-            <CommentForm onComplete={this.handleComplete} image={profileImage}/>
+            <CommentForm onComplete={handleComplete} image={profileImage}/>
           </div>
           {comments.map(comment =>
             <div key={comment._id} className='comentOuterDiv'>
@@ -66,13 +58,13 @@ class MessageBoardContainer extends React.Component {
           )}
         </div>
         <div className='messageBoardModalContainer'>
-          {renderIf(this.state.launchCommentModal,
-            <Modal heading='MESSAGE BOARD' close={() => this.setState({ launchCommentModal: false })}>
+          {renderIf(launchCommentModal,
+            <Modal heading='MESSAGE BOARD' close={() => setLaunchCommentModal(false)}>
               <div>
                 <div className='messageBoard-wrapper'>
-                  <CommentForm onComplete={this.handleComplete} image={profileImage}/>
+                  <CommentForm onComplete={handleComplete} image={profileImage}/>
                 </div>
-                {this.props.comments.map(comment =>
+                {props.comments.map(comment =>
                   <div key={comment._id} className='comentOuterDiv'>
                     <CommentItem  comment={comment} image={profileImage} />
                   </div>
@@ -83,18 +75,16 @@ class MessageBoardContainer extends React.Component {
         </div>
       </div>
     );
-  }
 }
 
-let mapStateToProps = state => ({
+const mapStateToProps = state => ({
   userAuth: state.userAuth,
   userProfile: state.userProfile,
   currentMessageBoard: state.currentMessageBoard,
   comments: state.comments,
 });
 
-let mapDispatchToProps = dispatch => ({
-//   messageBoardFetch: messageBoardID => dispatch(messageBoardFetchRequest(messageBoardID)),
+const mapDispatchToProps = dispatch => ({
   commentCreate: comment => dispatch(commentCreateRequest(comment)),
   commentFetch: commentID => dispatch(commentFetchRequest(commentID)),
   commentsFetch: comments => dispatch(commentsFetchRequest(comments)),

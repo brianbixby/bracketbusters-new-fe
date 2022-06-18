@@ -31,8 +31,7 @@ class CommentForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     if(this.state.content) {
-      this.props.onComplete({content: this.state.content })
-        .catch(err => console.error(err));
+      this.props.onComplete({content: this.state.content });
     }
     this.setState({ content: '', textAreaHeight: 37 });
   };
@@ -54,7 +53,7 @@ class CommentForm extends React.Component {
               type='content'
               name='content'
               placeholder='add a comment...'
-              value={this.state.content}
+              value={content}
               onChange={this.handleChange}
               ref={this.textAreaHeight}
               style={textAreaStyle}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { tokenSignInRequest } from '../../actions/userAuth-actions.js';
 import { userProfileFetchRequest, groupProfilesFetchRequest } from '../../actions/userProfile-actions.js';
@@ -15,25 +15,30 @@ import MessageBoardContainer from '../message-board-container';
 import Table from '../helpers/table';
 import BannerAd from '../helpers/bannerAd';
 import { userValidation, logError, renderIf, formatDate } from '../../lib/util.js';
+import basketball from './../helpers/assets/basketball.png';
+import steph from './../helpers/assets/basketball.png';
+import placeholderImage from './../helpers/assets/profilePlaceholder.png';
+import users from './../helpers/assets/icons/users.icon.svg';
+import info from './../helpers/assets/icons/info.icon.svg';
 
 function GroupItemContainer(props) {
+    const { groupID } = useParams();
     let navigate = useNavigate();
 
     useEffect(() => {
-        return userValidation(props, navigate)
+        let group;
+        userValidation(props, navigate)
         .then(() => {
           if (Object.entries(props.currentGroup).length === 0) {
-            let myGroup = {_id: window.location.href.split('/group/')[1]};
-            return props.groupFetch(myGroup)
-              .then(group => {
-                return props.groupProfilesFetch(group.users)
-                  .then(() => group)
+            let myGroup = {_id: groupID};
+            props.groupFetch(myGroup)
+              .then(groupData => {
+                group = groupData;
+                props.groupProfilesFetch(group.users)
               })
-              .then(group => props.messageBoardGroupFetch(group._id))
+              .then(() => props.messageBoardGroupFetch(group._id))
               .then(mb => props.commentsFetch(mb.comments))
-          }
-          return ;
-        })
+        }})
         .then(() => window.scrollTo(0, 0))
         .catch(() => logError);
     }, []);
@@ -46,7 +51,7 @@ function GroupItemContainer(props) {
   //     .then(messageBoard => {
   //       props.commentsFetch(messageBoard.comments);
   //     })
-  //     .then(() =>  props.history.push(`/group/${group._id}`))
+  //     .then(() =>  navigate(`/group/${group._id}`))
   //     .catch(logError);
   // };
 
@@ -57,7 +62,7 @@ function GroupItemContainer(props) {
         props.commentsFetch(messageBoard.comments);
       })
       .then(()=> props.userPicksFetch(league._id))
-      .then( () =>  props.history.push(`/league/${league._id}`))
+      .then( () =>  navigate(`/league/${league._id}`))
       .catch(logError);
   };
   const onGroupClick = (group, e) => {
@@ -67,7 +72,7 @@ function GroupItemContainer(props) {
       .then(messageBoard => {
         props.commentsFetch(messageBoard.comments);
       })
-      .then(() =>  props.history.push(`/group/${group._id}`))
+      .then(() =>  navigate(`/group/${group._id}`))
       .catch(logError);
   };
   const handleBoundTopPublicLeagueClick = (league, e) => {
@@ -78,7 +83,7 @@ function GroupItemContainer(props) {
       return props.leagueJoin(league._id)
       .then(() => props.messageBoardLeagueFetch(league._id))
       .then(messageBoard => props.commentsFetch(messageBoard.comments))
-      .then(() => props.history.push(`/league/${league._id}`))
+      .then(() => navigate(`/league/${league._id}`))
       .catch(logError);
     }
   };
@@ -91,7 +96,7 @@ function GroupItemContainer(props) {
         .then(() => props.groupJoin(group._id))
         .then(() => props.messageBoardGroupFetch(group._id))
         .then(messageBoard => props.commentsFetch(messageBoard.comments))
-        .then(() => props.history.push(`/group/${group._id}`))
+        .then(() => navigate(`/group/${group._id}`))
         .catch(logError);
     }
   };
@@ -100,12 +105,7 @@ function GroupItemContainer(props) {
     let formTypeLeague = 'league';
     let formTypeGroup = 'group';
     let topScores = 'scores';
-    let basketball = require('./../helpers/assets/basketball.png');
-    let steph = require('./../helpers/assets/basketball.png');
     let groupPhoto = currentGroup.image ? <img className='createImg' src={currentGroup.image} alt="Group icon" /> : <img className='createImg' src={steph} alt="Steph Curry" />;
-    let placeholderImage = require('./../helpers/assets/profilePlaceholder.png');
-    let users = require('./../helpers/assets/icons/users.icon.svg');
-    let info = require('./../helpers/assets/icons/info.icon.svg');
     return (
       <div className='groupItem-page page-outer-div' id='top'>
         <div className='grid-container'>

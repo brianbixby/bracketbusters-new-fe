@@ -15,13 +15,15 @@ import LeagueAllPrivateForm from '../league-all-private-form';
 import Table from '../helpers/table';
 import BannerAd from '../helpers/bannerAd';
 import { userValidation, logError} from '../../lib/util.js';
+import users from './../helpers/assets/icons/users.icon.svg';
+import lock from './../helpers/assets/icons/lock.icon.svg';
 
 function LeagueAllContainer(props) {
     let navigate = useNavigate();
     const [leaguesShown, setLeaguesShown] = useState(10);
 
     useEffect(() => {
-        return userValidation(props, navigate)
+        userValidation(props, navigate)
         .then(() => props.allPublicLeaguesFetch())
         .catch(() => logError);
     }, [])
@@ -78,8 +80,6 @@ function LeagueAllContainer(props) {
   };
     let tableType = 'league';
     let leagues = props.publicLeagues.slice(0, leaguesShown);
-    let users = require('./../helpers/assets/icons/users.icon.svg');
-    let lock = require('./../helpers/assets/icons/lock.icon.svg');
     return (
       <div className='leagues-container page-outer-div'>
         <div className='grid-container'>
