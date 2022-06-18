@@ -30,8 +30,11 @@ class GroupAllPrivateForm extends React.Component {
     let setError = (name, error) => (errors[`${name}Error`] = error);
     let deleteError = name => (errors[`${name}Error`] = null);
 
-    if (!value) setError(name, `${name} can not be empty`);
-    else deleteError(name);
+    if (!value) {
+      setError(name, `${name} can not be empty`);
+    } else {
+      deleteError(name);
+    }
 
     this.setState({
       ...errors,

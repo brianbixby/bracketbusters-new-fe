@@ -37,7 +37,7 @@ function GroupAllContainer(props) {
   useEffect(() => {
     userValidation(props, navigate)
       .then(() => props.allPublicGroupsFetch())
-      .catch(() => logError);
+      .catch(err => logError(err));
   }, []);
 
   const onGroupClick = group => {
@@ -68,7 +68,9 @@ function GroupAllContainer(props) {
     let group;
     if (
       props.groups.some(groups => {
-        if (groups.groupName === credentials.groupName) return (group = groups);
+        if (groups.groupName === credentials.groupName) {
+          return (group = groups);
+        }
       })
     ) {
       onGroupClick(group);

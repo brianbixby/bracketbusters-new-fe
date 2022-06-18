@@ -40,18 +40,23 @@ class LeagueForm extends React.Component {
     let deleteError = name => (errors[`${name}Error`] = null);
 
     if (name === 'leagueName') {
-      if (!value) setError(name, `${name} can not be empty`);
-      else if (!isAscii(value))
+      if (!value) {
+        setError(name, `${name} can not be empty`);
+      } else if (!isAscii(value)) {
         setError(name, 'password may only contain normal charachters');
-      else deleteError(name);
+      } else {
+        deleteError(name);
+      }
     }
 
     if (name === 'password') {
-      if (!value && this.state.privacy === 'private')
+      if (!value && this.state.privacy === 'private') {
         setError(name, `${name} can not be empty`);
-      else if (!isAscii(value))
+      } else if (!isAscii(value)) {
         setError(name, 'password may only contain normal charachters');
-      else deleteError(name);
+      } else {
+        deleteError(name);
+      }
     }
 
     this.setState({

@@ -66,7 +66,7 @@ function GroupItemContainer(props) {
         }
       })
       .then(() => window.scrollTo(0, 0))
-      .catch(() => logError);
+      .catch(err => logError(err));
   }, []);
 
   // onGroupClick = (group, e) => {

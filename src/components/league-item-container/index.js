@@ -76,7 +76,7 @@ function LeagueContainer(props) {
         props.gamesFetch(props.currentLeague.sportingEventID, gameIDArr);
       })
       .then(() => window.scrollTo(0, 0))
-      .catch(() => logError);
+      .catch(err => logError(err));
   }, []);
 
   const formatDate = date => {

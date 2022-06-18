@@ -29,7 +29,7 @@ class Intro extends React.Component {
     return this.props
       .signIn(user)
       .then(() => {
-        return this.props.sportingEventsFetch().catch(() => logError);
+        return this.props.sportingEventsFetch().catch(err => logError(err));
       })
       .then(sportingEvent => {
         return this.props
@@ -41,34 +41,44 @@ class Intro extends React.Component {
               groups: profile.body.groups,
             };
           })
-          .catch(() => logError);
+          .catch(err => logError(err));
       })
       .then(returnObj => {
-        if (returnObj.leagues.length)
-          this.props.leaguesFetch(returnObj.leagues).catch(() => logError);
+        if (returnObj.leagues.length) {
+          this.props
+            .leaguesFetch(returnObj.leagues)
+            .catch(err => logError(err));
+        }
         return returnObj;
       })
       .then(returnObj => {
-        if (returnObj.groups.length)
-          this.props.groupsFetch(returnObj.groups).catch(() => logError);
+        if (returnObj.groups.length) {
+          this.props.groupsFetch(returnObj.groups).catch(err => logError(err));
+        }
         return returnObj;
       })
       .then(returnObj => {
-        if (!returnObj.leagues) returnObj.leagues = [];
+        if (!returnObj.leagues) {
+          returnObj.leagues = [];
+        }
         return this.props
           .topPublicLeaguesFetch(returnObj.sportingEventID, returnObj.leagues)
           .then(() => returnObj)
-          .catch(() => logError);
+          .catch(err => logError(err));
       })
       .then(returnObj => {
         return this.props
           .topScoresFetch(returnObj.sportingEventID)
           .then(() => returnObj)
-          .catch(() => logError);
+          .catch(err => logError(err));
       })
       .then(returnObj => {
-        if (!returnObj.groups) returnObj.groups = [];
-        this.props.topPublicGroupsFetch(returnObj.groups).catch(() => logError);
+        if (!returnObj.groups) {
+          returnObj.groups = [];
+        }
+        this.props
+          .topPublicGroupsFetch(returnObj.groups)
+          .catch(err => logError(err));
       })
       .catch(err => {
         logError(err);
@@ -79,7 +89,7 @@ class Intro extends React.Component {
     return this.props
       .signUp(user)
       .then(() => {
-        return this.props.sportingEventsFetch().catch(() => logError);
+        return this.props.sportingEventsFetch().catch(err => logError(err));
       })
       .then(sportingEvent => {
         return this.props
@@ -91,34 +101,44 @@ class Intro extends React.Component {
               groups: profile.body.groups,
             };
           })
-          .catch(() => logError);
+          .catch(err => logError(err));
       })
       .then(returnObj => {
-        if (returnObj.leagues.length)
-          this.props.leaguesFetch(returnObj.leagues).catch(() => logError);
+        if (returnObj.leagues.length) {
+          this.props
+            .leaguesFetch(returnObj.leagues)
+            .catch(err => logError(err));
+        }
         return returnObj;
       })
       .then(returnObj => {
-        if (returnObj.groups.length)
-          this.props.groupsFetch(returnObj.groups).catch(() => logError);
+        if (returnObj.groups.length) {
+          this.props.groupsFetch(returnObj.groups).catch(err => logError(err));
+        }
         return returnObj;
       })
       .then(returnObj => {
-        if (!returnObj.leagues) returnObj.leagues = [];
+        if (!returnObj.leagues) {
+          returnObj.leagues = [];
+        }
         return this.props
           .topPublicLeaguesFetch(returnObj.sportingEventID, returnObj.leagues)
           .then(() => returnObj)
-          .catch(() => logError);
+          .catch(err => logError(err));
       })
       .then(returnObj => {
         return this.props
           .topScoresFetch(returnObj.sportingEventID)
           .then(() => returnObj)
-          .catch(() => logError);
+          .catch(err => logError(err));
       })
       .then(returnObj => {
-        if (!returnObj.groups) returnObj.groups = [];
-        this.props.topPublicGroupsFetch(returnObj.groups).catch(() => logError);
+        if (!returnObj.groups) {
+          returnObj.groups = [];
+        }
+        this.props
+          .topPublicGroupsFetch(returnObj.groups)
+          .catch(err => logError(err));
       })
       .catch(err => {
         logError(err);

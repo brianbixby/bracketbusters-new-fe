@@ -35,7 +35,7 @@ function LeagueAllContainer(props) {
   useEffect(() => {
     userValidation(props, navigate)
       .then(() => props.allPublicLeaguesFetch())
-      .catch(() => logError);
+      .catch(err => logError(err));
   }, []);
 
   const onLeagueClick = league => {
