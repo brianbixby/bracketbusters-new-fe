@@ -1,7 +1,7 @@
-let userAuth = (state=null, action) => {
+let userAuth = (state = null, action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'SIGN_IN':
       return payload;
     case 'SIGN_OUT':

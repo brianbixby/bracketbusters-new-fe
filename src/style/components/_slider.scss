@@ -1,29 +1,29 @@
 // keep
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 .sliderOuter {
   position: relative;
   padding: 0;
 }
-.sliderOuterWrapper{
+.sliderOuterWrapper {
   font-size: 0;
-overflow-x: scroll;
---webkit-overflow-scrolling: touch;
-padding: 8px 16px 8px;
-margin-bottom: 4px;
-margin-top: -8px;
-white-space: nowrap;
+  overflow-x: scroll;
+  --webkit-overflow-scrolling: touch;
+  padding: 8px 16px 8px;
+  margin-bottom: 4px;
+  margin-top: -8px;
+  white-space: nowrap;
 }
-.sliderInnerWrapper{
+.sliderInnerWrapper {
   display: inline-block;
 }
-.cardOuter{
+.cardOuter {
   display: inline-block;
   margin-right: 6px;
   position: relative;
   cursor: pointer;
 }
-.cardItem{
+.cardItem {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-flex;
@@ -56,14 +56,14 @@ white-space: nowrap;
   height: 188px;
   margin: 0;
   position: relative;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   white-space: normal;
   width: 160px;
-  background: #FFF;
+  background: #fff;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.16);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
 }
-.cardContentWrapper{
+.cardContentWrapper {
   max-height: none;
   -webkit-flex-basis: auto;
   -moz-flex-basis: auto;
@@ -95,15 +95,20 @@ white-space: nowrap;
   padding: 12px;
   position: relative;
 }
-.cardContentBorderTop{
-  background-image: linear-gradient(to right, rgba(252,255,200,0) 0%, rgba(252,255,200,0.48) 50%, rgba(252,255,200,0) 100%);
+.cardContentBorderTop {
+  background-image: linear-gradient(
+    to right,
+    rgba(252, 255, 200, 0) 0%,
+    rgba(252, 255, 200, 0.48) 50%,
+    rgba(252, 255, 200, 0) 100%
+  );
   height: 3px;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
   -webkit-box-direction: normal;
-  background-color: #06143F;
+  background-color: #06143f;
 }
 .cardContentDiv {
   -webkit-box-pack: start;
@@ -129,7 +134,7 @@ white-space: nowrap;
   -ms-flex-direction: column;
   flex-direction: column;
 }
-.cardContentP{
+.cardContentP {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   display: -webkit-box;
@@ -141,7 +146,7 @@ white-space: nowrap;
   font-weight: 600;
   margin-right: 4px;
 }
-.cardImageDiv{
+.cardImageDiv {
   -webkit-flex-shrink: 0;
   -moz-flex-shrink: 0;
   -ms-flex-negative: 0;
@@ -158,7 +163,7 @@ white-space: nowrap;
   position: relative;
   background-color: #e1e1e1;
 }
-.cardImage{
+.cardImage {
   display: block;
   height: 90px;
   font-size: 90px;
@@ -168,6 +173,6 @@ white-space: nowrap;
   text-align: center;
   margin: auto;
 }
-.cardOuter:hover .joinTextTitle{
+.cardOuter:hover .joinTextTitle {
   color: #06c;
 }

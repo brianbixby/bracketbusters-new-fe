@@ -1,7 +1,7 @@
-let scoreboard = (state=[], action) => {
+let scoreboard = (state = [], action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'SCOREBOARDS_FETCH':
       return payload;
     case 'SIGN_OUT':

@@ -1,13 +1,15 @@
-.create-header, .header {
+.create-header,
+.header {
   font-weight: 900;
   text-transform: uppercase;
-  color: #4A4A4A;
+  color: #4a4a4a;
   font-size: 30px;
   text-align: center;
   margin-top: 20px;
 }
 @media only screen and (max-width: 750px) {
-  .muscles, .holla {
+  .muscles,
+  .holla {
     margin: auto;
     display: block;
     max-width: 90vw;
@@ -25,11 +27,10 @@
     float: right;
     max-width: 300px;
     font-size: 30px;
-    color: #4A4A4A;
+    color: #4a4a4a;
     font-weight: 400;
     margin-top: 100px !important;
   }
-
 }
 .usersLeagueAndGroupsHeader {
   margin: 20px 12px 20px 12px;
@@ -47,10 +48,11 @@
 
 .container .join-text {
   font-size: 30px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   font-weight: 400;
 }
-.russ, .kd {
+.russ,
+.kd {
   text-align: center;
   margin: auto;
   display: block;
@@ -61,7 +63,7 @@
   margin-top: 12px;
 }
 .myL-headers {
-  color: #9B9B9B;
+  color: #9b9b9b;
   font-size: 12px;
   font-weight: 500;
   padding: 8px 16px;
@@ -71,41 +73,45 @@
   .myL-headers {
     font-size: 15px;
   }
-  .l-name, .span-row .span-name {
+  .l-name,
+  .span-row .span-name {
     width: 30%;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     text-transform: uppercase;
   }
-  .l-creator, .span-row .span-owner {
+  .l-creator,
+  .span-row .span-owner {
     width: 30%;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     text-transform: uppercase;
   }
-  .l-players, .span-row .span-size {
+  .l-players,
+  .span-row .span-size {
     width: 15%;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     text-transform: uppercase;
   }
-  .l-scoring, .span-row .span-scoring, .span-row .span-privacy {
+  .l-scoring,
+  .span-row .span-scoring,
+  .span-row .span-privacy {
     width: 25%;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     text-transform: uppercase;
-    
   }
   .myL-headers {
     padding: 8px 0;
   }
 }
 .span-row {
-  border-bottom: 1px solid #D8D8D8;
+  border-bottom: 1px solid #d8d8d8;
 }
 .span-row p {
   color: #4a4a4a;
@@ -116,10 +122,10 @@
 }
 
 .rowColors:nth-child(odd) {
-  background: #EDEEF0;
+  background: #edeef0;
 }
 .rowColors2:nth-child(even) {
-  background: #EDEEF0;
+  background: #edeef0;
 }
 .labelDesc {
   font-weight: 700;
@@ -134,11 +140,14 @@
   width: 100%;
   display: block;
 }
-.league-all-private-form  input {
+.league-all-private-form input {
   width: 80%;
   margin-left: 10%;
 }
-.joinPrivate { margin-right: 10%; margin-bottom: 30px;}
+.joinPrivate {
+  margin-right: 10%;
+  margin-bottom: 30px;
+}
 
 @media only screen and (min-width: 481px) {
   .landing-page .intro {

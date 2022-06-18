@@ -1,12 +1,18 @@
-.bbBannerAd{
+.bbBannerAd {
   margin-top: -16px;
   margin-bottom: 10px;
   height: 70px;
-  background: -webkit-gradient(linear, left top, right top, from(#f62626), to(#E62222));
-  background: -webkit-linear-gradient(left, #f62626, #E62222);
-  background: -o-linear-gradient(left, #f62626, #E62222);
-  background: linear-gradient(to right, #f62626, #E62222);
-  color: #FFF;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#f62626),
+    to(#e62222)
+  );
+  background: -webkit-linear-gradient(left, #f62626, #e62222);
+  background: -o-linear-gradient(left, #f62626, #e62222);
+  background: linear-gradient(to right, #f62626, #e62222);
+  color: #fff;
   cursor: pointer;
   height: 50px;
   width: 100%;
@@ -29,10 +35,28 @@
   }
 }
 .bbBannerAd:hover {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(246, 38, 38,.9)), to(rgba(230, 34, 34,.9)));
-  background: -webkit-linear-gradient(left, rgba(246, 38, 38,.9), rgba(230, 34, 34,.9));
-  background: -o-linear-gradient(left, rgba(246, 38, 38,.9), rgba(230, 34, 34,.9));
-  background: linear-gradient(to right, rgba(246, 38, 38,.9), rgba(230, 34, 34,.9));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgba(246, 38, 38, 0.9)),
+    to(rgba(230, 34, 34, 0.9))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(246, 38, 38, 0.9),
+    rgba(230, 34, 34, 0.9)
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(246, 38, 38, 0.9),
+    rgba(230, 34, 34, 0.9)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(246, 38, 38, 0.9),
+    rgba(230, 34, 34, 0.9)
+  );
 }
 @media (max-width: 455px) {
   .bbBannerAd {

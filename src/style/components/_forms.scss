@@ -1,4 +1,4 @@
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 .form {
   input {
@@ -25,11 +25,12 @@
     width: 20%;
   }
   .radio-div {
-    color: #4A4A4A;
+    color: #4a4a4a;
     font-size: 16px;
     padding: $pad;
   }
-  .username-availability, .groupName-availability {
+  .username-availability,
+  .groupName-availability {
     margin-left: $margin;
   }
 }
@@ -48,7 +49,7 @@
   text-align: right;
 }
 .leagueName-availability {
-  margin-left: .7vw;
+  margin-left: 0.7vw;
 }
 .form label {
   margin-left: 4px;
@@ -71,7 +72,7 @@
   }
 }
 @media (max-width: 550px) {
-  .modal-wrapper{
+  .modal-wrapper {
     width: 90vw;
   }
 }

@@ -1,5 +1,5 @@
 // keep
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 .tableHeadline {
   line-height: 1;
@@ -23,15 +23,22 @@
   padding: 8px 0;
   font-size: 11px;
   color: #1d1e1f;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
-.columnUser, .columnUserData, .columnScore, .columnScoreData {
+.columnUser,
+.columnUserData,
+.columnScore,
+.columnScoreData {
   width: 50%;
 }
-.columnName, .columnNameData, .columnCreator, .columnCreatorData {
+.columnName,
+.columnNameData,
+.columnCreator,
+.columnCreatorData {
   width: 40%;
 }
-.columnSize, .columnSizeData {
+.columnSize,
+.columnSizeData {
   width: 20%;
 }
 .columnData {
@@ -50,21 +57,21 @@
 .cursor {
   cursor: pointer;
 }
-.cursor:hover .columnData{
+.cursor:hover .columnData {
   color: #06c;
 }
 .tableContainer {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
   overflow: hidden;
 }
-.hideBig{
+.hideBig {
   margin-right: 16px;
   margin-left: 16px;
 }
-.leaguesContainerHeader{
+.leaguesContainerHeader {
   display: none;
 }
-.columnUserData{
+.columnUserData {
   text-align: left;
   padding-left: 45px;
 }
@@ -76,7 +83,8 @@ span.columnCreatorData.columnData {
   text-align: left;
   padding-left: 10px;
 }
-p.tableColumn.columnName, p.tableColumn.columnCreator {
+p.tableColumn.columnName,
+p.tableColumn.columnCreator {
   text-align: left;
   padding-left: 10px;
 }
@@ -85,18 +93,24 @@ p.tableColumn.columnUser {
   padding-left: 45px;
 }
 @media (max-width: 991px) {
-  .hideMed{
+  .hideMed {
     display: none;
   }
 }
 @media (min-width: 411px) and (max-width: 581px) {
-  .columnSize, .columnSizeData {
+  .columnSize,
+  .columnSizeData {
     padding-right: 10vw;
   }
-  span.columnNameData.columnData, span.columnNameData.columnData, p.tableColumn.columnName {
+  span.columnNameData.columnData,
+  span.columnNameData.columnData,
+  p.tableColumn.columnName {
     padding-left: 10vw;
   }
-  p.tableColumn.columnUser, .columnUserData, .columnScore, .columnScoreData {
+  p.tableColumn.columnUser,
+  .columnUserData,
+  .columnScore,
+  .columnScoreData {
     padding-left: 20vw;
     text-align: left;
   }
@@ -111,7 +125,7 @@ p.tableColumn.columnUser {
     width: 290px;
     display: inline-block;
   }
-  .tablesContainer{
+  .tablesContainer {
     -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
     justify-content: space-between;
@@ -125,7 +139,8 @@ p.tableColumn.columnUser {
     width: 550px;
     margin: auto;
   }
-  .groupsTableContainer .columnNameData, .groupsTableContainer .ColumnCreatorData {
+  .groupsTableContainer .columnNameData,
+  .groupsTableContainer .ColumnCreatorData {
     text-align: left;
     padding-left: 50px;
   }
@@ -144,7 +159,7 @@ p.tableColumn.columnUser {
   .hideSmall {
     display: none;
   }
-  .leagueBoardsContainer{
+  .leagueBoardsContainer {
     max-width: 660px;
     margin-right: auto;
     margin-left: auto;
@@ -156,13 +171,13 @@ p.tableColumn.columnUser {
     overflow: hidden;
     padding: 16px 16px 0;
   }
-  .leaguesBoardHeader{
+  .leaguesBoardHeader {
     color: #1d1e1f;
     font-size: 13px;
     font-weight: 900;
     letter-spacing: 1px;
   }
-  .leaguesContainerHeader{
+  .leaguesContainerHeader {
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
@@ -175,17 +190,18 @@ p.tableColumn.columnUser {
     display: flex;
     margin-bottom: 16px;
   }
-  .leaguesBoardIcon{
+  .leaguesBoardIcon {
     margin-right: 10px;
   }
 }
-@media (min-width: 992px){
-  .hideBig{
+@media (min-width: 992px) {
+  .hideBig {
     display: none;
   }
 }
 @media (min-width: 1200px) {
-  .tableContainer, .maxWidth294Big {
+  .tableContainer,
+  .maxWidth294Big {
     width: 294px;
   }
   .maxWidth294Big {

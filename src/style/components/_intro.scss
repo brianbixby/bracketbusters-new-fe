@@ -1,9 +1,9 @@
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 .headline {
   font-family: 'Oswald', sans-serif;
   font-weight: 700;
-  color: #4A4A4A;
+  color: #4a4a4a;
   font-size: 48px;
   line-height: 1;
   padding: 20px 0 0;
@@ -43,14 +43,14 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2;
-  color: #4A4A4A;
+  color: #4a4a4a;
   padding: 0 15px;
   font-family: $font-primary;
 }
 .creator {
   font-weight: 700;
   margin-top: 20px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   line-height: 1.2;
   font-size: 16px;
   font-family: $font-secondary;
@@ -74,7 +74,7 @@
   border-color: $color-primary;
 }
 .intro {
-  background: #FFF !important;
+  background: #fff !important;
 }
 .introFooter {
   display: none;

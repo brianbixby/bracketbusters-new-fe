@@ -1,7 +1,7 @@
-let currentMessageBoard = (state={}, action) => {
+let currentMessageBoard = (state = {}, action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'MESSAGEBOARD_FETCH':
       return payload;
     case 'SIGN_OUT':

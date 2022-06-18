@@ -1,15 +1,23 @@
 import { checkAndAdd } from '../lib/util.js';
 
 let validateLeague = league => {
-  if(!league._id || !league.leagueName || !league.sportingEventID || !league.owner || !league.privacy) {
-    throw new Error('VALIDATION ERROR: league requires a id, name, sportingeventid, owner and privacy.');
+  if (
+    !league._id ||
+    !league.leagueName ||
+    !league.sportingEventID ||
+    !league.owner ||
+    !league.privacy
+  ) {
+    throw new Error(
+      'VALIDATION ERROR: league requires a id, name, sportingeventid, owner and privacy.'
+    );
   }
 };
 
-let league = (state=[], action) => {
+let league = (state = [], action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'LEAGUE_FETCH':
       return checkAndAdd(payload, state);
     case 'LEAGUES_FETCH':
@@ -18,11 +26,15 @@ let league = (state=[], action) => {
       validateLeague(payload);
       return [payload, ...state];
     case 'LEAGUE_UPDATE':
-      if(state === []) throw new Error('USAGE ERROR: can not update league not in state');
+      if (state === [])
+        throw new Error('USAGE ERROR: can not update league not in state');
       validateLeague(payload);
-      return state.map(league => league._id === payload._id ? payload : league);
+      return state.map(league =>
+        league._id === payload._id ? payload : league
+      );
     case 'LEAGUE_DELETE':
-      if(state === []) throw new Error('USAGE ERROR: can not delete league not in state');
+      if (state === [])
+        throw new Error('USAGE ERROR: can not delete league not in state');
       validateLeague(payload);
       return state.filter(league => league._id !== payload._id);
     case 'LEAGUE_JOIN':

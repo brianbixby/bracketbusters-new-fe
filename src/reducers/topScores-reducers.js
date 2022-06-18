@@ -1,7 +1,7 @@
-let topLeagues = (state=[], action) => {
+let topLeagues = (state = [], action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'TOP_SCORES_FETCH':
       return payload;
     case 'SIGN_OUT':

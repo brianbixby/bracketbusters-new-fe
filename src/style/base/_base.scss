@@ -1,7 +1,7 @@
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 body {
-  background: #FFF;
+  background: #fff;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -13,24 +13,36 @@ textarea {
   font-size: 14px;
 }
 .font-md {
- font-size: 22px;
+  font-size: 22px;
 }
 .font-lg {
   font-size: 29px;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, span {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
 }
-ul, li {
+ul,
+li {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -44,26 +56,38 @@ main {
   position: relative;
 }
 input {
-  box-sizing : border-box;
+  box-sizing: border-box;
   font-size: 14px;
 }
-input[type='text'], input[type='password'] {
+input[type='text'],
+input[type='password'] {
   white-space: pre-wrap;
 }
 
-h2.title, h2 {
+h2.title,
+h2 {
   margin-bottom: 10px;
   margin-left: $margin;
 }
-button, a, .modal-close, form input, form textarea {
-  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1), -webkit-transform 0.1s cubic-bezier(0.77, 0, 0.175, 1);
-  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1), transform 0.1s cubic-bezier(0.77, 0, 0.175, 1);
-  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1), transform 0.1s cubic-bezier(0.77, 0, 0.175, 1), -webkit-transform 0.1s cubic-bezier(0.77, 0, 0.175, 1);
+button,
+a,
+.modal-close,
+form input,
+form textarea {
+  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+    -webkit-transform 0.1s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 0.1s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 0.1s cubic-bezier(0.77, 0, 0.175, 1),
+    -webkit-transform 0.1s cubic-bezier(0.77, 0, 0.175, 1);
 }
-button:focus, a:focus {
+button:focus,
+a:focus {
   outline: none;
 }
-button, a {
+button,
+a {
   cursor: pointer !important;
 }
 @media only screen and (min-width: 371px) {
@@ -71,9 +95,10 @@ button, a {
     margin-bottom: $margin;
   }
 }
-@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
-	body {
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-	}
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-resolution: 2dppx) {
+  body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
 }

@@ -1,4 +1,4 @@
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 .tooltip {
   height: 0;
@@ -8,13 +8,13 @@
     position: relative;
     margin-bottom: 1vw;
     width: 100%;
-    
+
     p {
-      background: #FFF;
+      background: #fff;
       color: $color-primary;
       font-weight: 700;
       display: inline-block;
-      padding: .5vw;
+      padding: 0.5vw;
       width: auto;
       border: 2px solid $color-primary;
       border-radius: 4px;
@@ -28,7 +28,6 @@
       color: $color-primary;
       height: 15px;
     }
-
   }
 }
 .leagues-container {

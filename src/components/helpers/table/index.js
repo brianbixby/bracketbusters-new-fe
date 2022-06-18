@@ -7,18 +7,22 @@ class Table extends React.Component {
     let itemName = type === 'league' ? item.leagueName : item.groupName;
     let username = type === 'scores' ? item.userID.username : null;
     return (
-      <div className='tableRow'>
-        {renderIf(type !== 'scores',
+      <div className="tableRow">
+        {renderIf(
+          type !== 'scores',
           <p>
-            <span className='columnNameData columnData'>{itemName} </span>
-            <span className='columnCreatorData columnData'>{item.ownerName} </span>
-            <span className='columnSizeData columnData'>{item.size} </span>
+            <span className="columnNameData columnData">{itemName} </span>
+            <span className="columnCreatorData columnData">
+              {item.ownerName}{' '}
+            </span>
+            <span className="columnSizeData columnData">{item.size} </span>
           </p>
         )}
-        {renderIf(type === 'scores',
+        {renderIf(
+          type === 'scores',
           <p>
-            <span className='columnUserData columnData'>{username} </span>
-            <span className='columnScoreData columnData'>{item.score} </span>
+            <span className="columnUserData columnData">{username} </span>
+            <span className="columnScoreData columnData">{item.score} </span>
           </p>
         )}
       </div>

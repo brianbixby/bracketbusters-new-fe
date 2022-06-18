@@ -1,6 +1,6 @@
-@import './../lib/vars'; 
+@import './../lib/vars';
 
-.comentOuterDiv{
+.comentOuterDiv {
   margin-top: 12px;
   min-height: 50px;
 
@@ -11,14 +11,14 @@
       width: 48px;
       height: 48px;
       margin-right: 8px;
-     }
+    }
   }
-    
+
   .comment-text-div {
     width: calc((100% - 56px));
     display: inline-block;
     box-sizing: border-box;
-    
+
     .comment-commenter {
       color: #90949c;
       font-size: 14px;
@@ -29,5 +29,5 @@
       padding: 4px 0;
       word-break: break-word;
     }
-   }
+  }
 }

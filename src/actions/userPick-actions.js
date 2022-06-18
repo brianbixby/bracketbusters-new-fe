@@ -23,10 +23,13 @@ export const userPickFetch = userPick => ({
 export const userPickCreateRequest = userPick => (dispatch, getState) => {
   let { userAuth } = getState();
 
-  return superagent.post(`${process.env.REACT_APP_API_URL}/api/league/${userPick.leagueID}/userpick`)
+  return superagent
+    .post(
+      `${process.env.REACT_APP_API_URL}/api/league/${userPick.leagueID}/userpick`
+    )
     .set('Authorization', `Bearer ${userAuth}`)
     .send(userPick)
-    .then( res => {
+    .then(res => {
       dispatch(userPickCreate(res.body));
       return res.body;
     });
@@ -34,20 +37,22 @@ export const userPickCreateRequest = userPick => (dispatch, getState) => {
 
 export const userPickUpdateRequest = userPick => (dispatch, getState) => {
   let { userAuth } = getState();
-  
-  return superagent.put(`${process.env.REACT_APP_API_URL}/api/userpick/${userPick._id}`)
+
+  return superagent
+    .put(`${process.env.REACT_APP_API_URL}/api/userpick/${userPick._id}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .send(userPick)
-    .then( res => {
+    .then(res => {
       dispatch(userPickUpdate(res.body));
       return res.body;
     });
 };
 
-export const userPicksFetchRequest = leagueID  => (dispatch, getState) => {
+export const userPicksFetchRequest = leagueID => (dispatch, getState) => {
   let { userAuth } = getState();
 
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/userpicks/${leagueID}`)
+  return superagent
+    .get(`${process.env.REACT_APP_API_URL}/api/userpicks/${leagueID}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(userPicksFetch(res.body));
@@ -55,9 +60,10 @@ export const userPicksFetchRequest = leagueID  => (dispatch, getState) => {
     });
 };
 
-export const userPickFetchRequest = userPickID  => (dispatch, getState) => {
+export const userPickFetchRequest = userPickID => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/userpick/${userPickID}`)
+  return superagent
+    .get(`${process.env.REACT_APP_API_URL}/api/userpick/${userPickID}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(userPickFetch(res.body));

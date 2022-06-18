@@ -1,5 +1,5 @@
 // keep
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 .joinOuter {
   min-height: 104px;
@@ -32,7 +32,7 @@
   overflow: hidden;
   min-height: 104px;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.16);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
   margin: 0 16px;
   position: relative;
 }
@@ -65,7 +65,7 @@
   display: block;
   white-space: nowrap;
 }
- .landing-page .joinTextDiv .joinTextTitle {
+.landing-page .joinTextDiv .joinTextTitle {
   white-space: normal;
   max-height: 44px;
   display: block;
@@ -110,8 +110,9 @@
   text-align: center;
   margin: auto;
 }
-.joinOuter:hover .joinTextTitle, .createMainWrapper:hover .createMainTitle {
-  color: #06c;;
+.joinOuter:hover .joinTextTitle,
+.createMainWrapper:hover .createMainTitle {
+  color: #06c;
 }
 @media only screen and (max-width: 767px) {
   .stephJoinImg {
@@ -124,7 +125,7 @@
     max-height: none;
   }
 }
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 768px) {
   .joinOuter {
     height: 150px;
   }

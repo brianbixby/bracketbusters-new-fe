@@ -1,4 +1,4 @@
-@import './../lib/vars'; 
+@import './../lib/vars';
 
 .b-button {
   line-height: 1;
@@ -13,26 +13,26 @@
   cursor: pointer;
 }
 .red-button {
-  color: #FFF;
+  color: #fff;
   background: $color-primary;
   border: 2px solid $color-primary;
 }
 .red-button:hover {
   color: $color-primary;
-  background: #FFF;
+  background: #fff;
   border-width: 2px;
   font-weight: 900;
 }
 .dark-button {
-  color: #4A4A4A;
-  border-color: #4A4A4A;
-  background: #FFF;
+  color: #4a4a4a;
+  border-color: #4a4a4a;
+  background: #fff;
   font-weight: 900;
   border-width: 2px;
 }
 .dark-button:hover {
-  background: #4A4A4A;
-  color: #FFF;
+  background: #4a4a4a;
+  color: #fff;
   font-weight: 500;
 }
 .ml20 {

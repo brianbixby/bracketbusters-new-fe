@@ -1,4 +1,4 @@
-$color-primary: #FF001F;
+$color-primary: #ff001f;
 $color-primary-hover: rgba(211, 211, 211, 1);
 $color-secondary: rgb(33, 153, 33);
 $color-secondary-hover: rgba(33, 153, 33, 0.5);
@@ -10,10 +10,10 @@ $color-black: #000;
 $color-gray: #b4b4b4;
 $color-gray-hover: rgba(180, 180, 180, 0.5);
 $color-lightgray: #e9e9e9;
-$light-gray:#4A4A4A;
+$light-gray: #4a4a4a;
 
-$pad: .7vw;
-$margin: .7vw;
+$pad: 0.7vw;
+$margin: 0.7vw;
 
 $font-primary: 'Lato', sans-serif;
 $font-secondary: 'Roboto', 'Oswald', sans-serif;
@@ -21,12 +21,12 @@ $font-secondary: 'Roboto', 'Oswald', sans-serif;
 $font-lg: 5.2vw;
 $font-md: 3.2vw;
 
-$border-radius: .5vw;
+$border-radius: 0.5vw;
 
-$dg: #4A4A4A;
-$lg: #9B9B9B;
+$dg: #4a4a4a;
+$lg: #9b9b9b;
 $ghover: #b4b4b4;
 
 // checkmark
 $color--green: #7ac142;
-$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+$curve: cubic-bezier(0.65, 0, 0.45, 1);

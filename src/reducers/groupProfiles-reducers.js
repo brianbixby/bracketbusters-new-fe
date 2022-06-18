@@ -1,7 +1,7 @@
-let groupProfiles = (state=[], action) => {
+let groupProfiles = (state = [], action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'GROUPPROFILES_FETCH':
       return payload;
     case 'SIGN_OUT':

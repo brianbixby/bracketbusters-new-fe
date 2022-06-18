@@ -1,75 +1,69 @@
-import React from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
 import { renderIf } from '../../lib/util';
 
-class CommentForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.textAreaHeight = React.createRef();
-    this.state = {
-      content: '',
-      textAreaHeight: 37,
+function CommentForm(props) {
+  const [content, setContent] = useState('');
+  const [textAreaHeight, setTextAreaHeight] = useState(37);
+  const textAreaHeightRef = React.createRef();
+
+  useLayoutEffect(() => {
+    return () => {
+      setContent('');
+      setTextAreaHeight(37);
     };
-  }
+  }, []);
 
-  componentWillUnmount() {
-    this.setState({ content: '', textAreaHeight: 37 });
-  }
-
-  handleChange = e => {
-    let currHeight = this.textAreaHeight.current.scrollHeight;
-    if(currHeight > this.state.textAreaHeight) 
-      this.setState({ textAreaHeight: currHeight });
-
-    let { name, value } = e.target;
-
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    if(this.state.content) {
-      this.props.onComplete({content: this.state.content });
+  const handleChange = e => {
+    let currHeight = textAreaHeightRef.current.scrollHeight;
+    if (currHeight > textAreaHeight) {
+      setTextAreaHeight(currHeight);
     }
-    this.setState({ content: '', textAreaHeight: 37 });
+    setContent(e.target.value);
   };
 
-  render() {
-    let { content} = this.state;
-    let textAreaStyle = {
-      height: `${this.state.textAreaHeight}px`,
-    };
-    return (
-      <form onSubmit={this.handleSubmit} className='form comment-form'>
-        <div className='photo-div'>
-          <img src={this.props.image} alt="Comment Icon" />
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (content) {
+      props.onComplete({ content });
+    }
+    setContent('');
+    setTextAreaHeight(37);
+  };
+
+  let textAreaStyle = { height: `${textAreaHeight}px` };
+  return (
+    <form onSubmit={handleSubmit} className="form comment-form">
+      <div className="photo-div">
+        <img src={props.image} alt="Comment Icon" />
+      </div>
+      <div className="commentInput-div">
+        <div className="commentInputWrapper">
+          <textarea
+            className="commentInput"
+            type="content"
+            name="content"
+            placeholder="add a comment..."
+            value={content}
+            onChange={handleChange}
+            ref={textAreaHeightRef}
+            style={textAreaStyle}
+          ></textarea>
         </div>
-        <div className='commentInput-div'>
-          <div className='commentInputWrapper'>
-            <textarea
-              className='commentInput'
-              type='content'
-              name='content'
-              placeholder='add a comment...'
-              value={content}
-              onChange={this.handleChange}
-              ref={this.textAreaHeight}
-              style={textAreaStyle}
-            ></textarea>
+      </div>
+      {renderIf(
+        content,
+        <div className="commentFormButtonDiv">
+          <div className="ButtonDiv">
+            <button className="button" type="submit">
+              {' '}
+              post{' '}
+            </button>
           </div>
         </div>
-        {renderIf(content,
-          <div className='commentFormButtonDiv'>
-            <div className='ButtonDiv'>
-              <button className='button' type='submit'> post </button>
-            </div>
-          </div>
-        )}
-      </form>
-    );
-  }
+      )}
+    </form>
+  );
 }
 
 export default CommentForm;

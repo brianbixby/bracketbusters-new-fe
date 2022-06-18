@@ -1,7 +1,7 @@
-let topGroups = (state=[], action) => {
+let topGroups = (state = [], action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'TOP_PUBLIC_GROUPS_FETCH':
       return payload;
     case 'SIGN_OUT':

@@ -1,12 +1,31 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import { tokenSignInRequest } from '../../actions/userAuth-actions.js';
-import { userProfileFetchRequest, userProfileUpdateRequest, groupProfilesFetchRequest } from '../../actions/userProfile-actions.js';
-import { leaguesFetchRequest, leagueCreateRequest, leagueFetch, leagueJoinRequest, topPublicLeaguesFetchRequest } from '../../actions/league-actions.js';
-import { groupsFetchRequest, groupCreateRequest, groupFetch, topPublicGroupsFetchRequest, groupJoinRequest } from '../../actions/group-actions.js';
-import { messageBoardLeagueFetchRequest, messageBoardGroupFetchRequest } from '../../actions/messageBoard-actions.js';
+import {
+  userProfileFetchRequest,
+  userProfileUpdateRequest,
+  groupProfilesFetchRequest,
+} from '../../actions/userProfile-actions.js';
+import {
+  leaguesFetchRequest,
+  leagueCreateRequest,
+  leagueFetch,
+  leagueJoinRequest,
+  topPublicLeaguesFetchRequest,
+} from '../../actions/league-actions.js';
+import {
+  groupsFetchRequest,
+  groupCreateRequest,
+  groupFetch,
+  topPublicGroupsFetchRequest,
+  groupJoinRequest,
+} from '../../actions/group-actions.js';
+import {
+  messageBoardLeagueFetchRequest,
+  messageBoardGroupFetchRequest,
+} from '../../actions/messageBoard-actions.js';
 import { commentsFetchRequest } from '../../actions/comment-actions.js';
 import { topScoresFetchRequest } from '../../actions/scoreboard-actions.js';
 import { sportingEventsFetchRequest } from '../../actions/sportingEvent-actions.js';
@@ -32,25 +51,28 @@ function LandingContainer(props) {
 
   useEffect(() => {
     userValidation(props, navigate, false);
-    props.sportingEventsFetch()
-    .catch(err => logError(err));
-    console.log('If you have any questions about my code please email me @BrianBixby0@gmail.com and visit https://www.builtbybixby.us to see my latest projects.');
+    props.sportingEventsFetch().catch(err => logError(err));
+    console.log(
+      'If you have any questions about my code please email me @BrianBixby0@gmail.com and visit https://www.builtbybixby.us to see my latest projects.'
+    );
   }, []);
 
   const handleLeagueCreate = league => {
     league.sportingEventID = props.sportingEvent._id;
-    return props.leagueCreate(league)
+    return props
+      .leagueCreate(league)
       .then(myLeague => props.messageBoardLeagueFetch(myLeague.body._id))
       .then(messageBoard => {
         props.commentsFetch(messageBoard.comments);
-        return messageBoard.leagueID
+        return messageBoard.leagueID;
       })
       .then(leagueID => navigate(`/league/${leagueID}`))
       .catch(logError);
   };
   const handleGroupCreate = groupInput => {
     let group;
-    return props.groupCreate(groupInput)
+    return props
+      .groupCreate(groupInput)
       .then(myGroup => {
         group = myGroup.body;
         return props.messageBoardGroupFetch(myGroup.body._id);
@@ -61,47 +83,48 @@ function LandingContainer(props) {
       .catch(logError);
   };
   const handleProfileUpdate = profile => {
-    return props.userProfileUpdate(profile)
-      .catch(logError);
+    return props.userProfileUpdate(profile).catch(logError);
   };
   const onLeagueClick = (league, e) => {
     props.leagueFetchRequest(league);
-    return props.messageBoardLeagueFetch(league._id)
+    return props
+      .messageBoardLeagueFetch(league._id)
       .then(messageBoard => {
         props.commentsFetch(messageBoard.comments);
       })
-      .then(()=> props.userPicksFetch(league._id))
-      .then( () =>  navigate(`/league/${league._id}`))
+      .then(() => props.userPicksFetch(league._id))
+      .then(() => navigate(`/league/${league._id}`))
       .catch(logError);
   };
   const onGroupClick = (group, e) => {
-    props.groupFetchRequest(group)
-    return props.groupProfilesFetch(group.users)
+    props.groupFetchRequest(group);
+    return props
+      .groupProfilesFetch(group.users)
       .then(() => props.messageBoardGroupFetch(group._id))
       .then(messageBoard => {
         props.commentsFetch(messageBoard.comments);
       })
-      .then(() =>  navigate(`/group/${group._id}`))
+      .then(() => navigate(`/group/${group._id}`))
       .catch(logError);
   };
   const handleBoundTopPublicLeagueClick = (league, e) => {
     if (props.leagues.some(leagues => leagues._id === league._id)) {
       onLeagueClick(league);
-    }
-    else {
-      return props.leagueJoin(league._id)
-      .then(() => props.messageBoardLeagueFetch(league._id))
-      .then(messageBoard => props.commentsFetch(messageBoard.comments))
-      .then(() => navigate(`/league/${league._id}`))
-      .catch(logError);
+    } else {
+      return props
+        .leagueJoin(league._id)
+        .then(() => props.messageBoardLeagueFetch(league._id))
+        .then(messageBoard => props.commentsFetch(messageBoard.comments))
+        .then(() => navigate(`/league/${league._id}`))
+        .catch(logError);
     }
   };
   const handleBoundTopPublicGroupClick = (group, e) => {
     if (props.groups.some(groups => groups._id === group._id)) {
       onGroupClick(group);
-    }
-    else {
-      return props.groupProfilesFetch(group.users)
+    } else {
+      return props
+        .groupProfilesFetch(group.users)
         .then(() => props.groupJoin(group._id))
         .then(() => props.messageBoardGroupFetch(group._id))
         .then(messageBoard => props.commentsFetch(messageBoard.comments))
@@ -110,132 +133,213 @@ function LandingContainer(props) {
     }
   };
   const handleRedirect = link => navigate(link);
-    // let { params } = props.match;
-    // let handleComplete = params.userAuth === 'signin' ? handleSignin : handleSignup;
-    let formTypeLeague = 'league';
-    let formTypeGroup = 'group';
-    let topScores = 'scores';
-    let profileAction ='create';
-    // let slide = require('./../helpers/assets/3.png');
-    return (
-      <section className='landing-page page-outer-div'>
-        {renderIf(!props.userAuth,
-          <Intro />
-        )}
-        {renderIf(props.userAuth,
-          <div className='grid-container'>
-            <BannerAd/>
-            <div>
-              <div className='row'>
-                <div className='col-md-8'>
-                  <div className='createOuter'>
-                    <CreateSection formType={formTypeLeague} joinedItems={props.leagues} handleRedirect={handleRedirect} handlejoinedItemClick={onLeagueClick}  handleCreate={() => setLeagueFormDisplay(true)}/>
-                  </div>
+  // let { params } = props.match;
+  // let handleComplete = params.userAuth === 'signin' ? handleSignin : handleSignup;
+  let formTypeLeague = 'league';
+  let formTypeGroup = 'group';
+  let topScores = 'scores';
+  let profileAction = 'create';
+  // let slide = require('./../helpers/assets/3.png');
+  return (
+    <section className="landing-page page-outer-div">
+      {renderIf(!props.userAuth, <Intro />)}
+      {renderIf(
+        props.userAuth,
+        <div className="grid-container">
+          <BannerAd />
+          <div>
+            <div className="row">
+              <div className="col-md-8">
+                <div className="createOuter">
+                  <CreateSection
+                    formType={formTypeLeague}
+                    joinedItems={props.leagues}
+                    handleRedirect={handleRedirect}
+                    handlejoinedItemClick={onLeagueClick}
+                    handleCreate={() => setLeagueFormDisplay(true)}
+                  />
                 </div>
-                <div className='col-md-4'>
-                  <div className='leagueBoardsContainer'>
-                    <div className='leaguesContainerHeader'>
-                      <img className='leaguesBoardIcon' src={basketball} alt="Basketball icon" />
-                      <p className='leaguesBoardHeader'>LEAGUES</p>
-                    </div>
-                  <div className='tablesContainer'>
-                    {renderIf(props.topPublicLeagues.length > 0,
-                      <div className='container tableContainer leagueBoards'>
+              </div>
+              <div className="col-md-4">
+                <div className="leagueBoardsContainer">
+                  <div className="leaguesContainerHeader">
+                    <img
+                      className="leaguesBoardIcon"
+                      src={basketball}
+                      alt="Basketball icon"
+                    />
+                    <p className="leaguesBoardHeader">LEAGUES</p>
+                  </div>
+                  <div className="tablesContainer">
+                    {renderIf(
+                      props.topPublicLeagues.length > 0,
+                      <div className="container tableContainer leagueBoards">
                         <div>
-                          <p className='tableHeadline'>FEATURED LEAGUES</p>
-                          <div className='tableColumnDiv'>
-                            <p className='tableColumn columnName'> LEAGUE NAME </p>
-                            <p className='tableColumn columnCreator'> CREATOR </p>
-                            <p className='tableColumn columnSize'> SIZE </p>
+                          <p className="tableHeadline">FEATURED LEAGUES</p>
+                          <div className="tableColumnDiv">
+                            <p className="tableColumn columnName">
+                              {' '}
+                              LEAGUE NAME{' '}
+                            </p>
+                            <p className="tableColumn columnCreator">
+                              {' '}
+                              CREATOR{' '}
+                            </p>
+                            <p className="tableColumn columnSize"> SIZE </p>
                           </div>
                         </div>
                         {props.topPublicLeagues.map(topPublicLeague => {
-                          let boundTopPublicLeagueClick = handleBoundTopPublicLeagueClick.bind(this, topPublicLeague);
-                          return <div className='rowColors cursor' key={topPublicLeague._id} onClick={boundTopPublicLeagueClick}>
-                            <Table item={topPublicLeague} type={formTypeLeague} />
-                          </div>
+                          let boundTopPublicLeagueClick =
+                            handleBoundTopPublicLeagueClick.bind(
+                              this,
+                              topPublicLeague
+                            );
+                          return (
+                            <div
+                              className="rowColors cursor"
+                              key={topPublicLeague._id}
+                              onClick={boundTopPublicLeagueClick}
+                            >
+                              <Table
+                                item={topPublicLeague}
+                                type={formTypeLeague}
+                              />
+                            </div>
+                          );
                         })}
-                        <div className='spacerRow'></div>
+                        <div className="spacerRow"></div>
                       </div>
                     )}
-                    {renderIf(props.topScores.length > 0,
-                      <div className='container tableContainer leagueBoards'>
+                    {renderIf(
+                      props.topScores.length > 0,
+                      <div className="container tableContainer leagueBoards">
                         <div>
-                          <p className='tableHeadline'>LEADERBOARD</p>
-                          <div className='tableColumnDiv'>
-                            <p className='tableColumn columnUser'> USER NAME </p>
-                            <p className='tableColumn columnScore'> SCORE </p>
+                          <p className="tableHeadline">LEADERBOARD</p>
+                          <div className="tableColumnDiv">
+                            <p className="tableColumn columnUser">
+                              {' '}
+                              USER NAME{' '}
+                            </p>
+                            <p className="tableColumn columnScore"> SCORE </p>
                           </div>
                         </div>
                         {props.topScores.map(topScore => {
-                          return <div className='rowColors' key={topScore._id}>
-                            <Table item={topScore} type={topScores} />
-                          </div>
+                          return (
+                            <div className="rowColors" key={topScore._id}>
+                              <Table item={topScore} type={topScores} />
+                            </div>
+                          );
                         })}
-                        <div className='spacerRow'> </div>
+                        <div className="spacerRow"> </div>
                       </div>
                     )}
                   </div>
                 </div>
               </div>
-              <div className={props.leagues.length < 1 ? 'marginTopLarge col-md-8' : 'col-md-8'}>
-                <div className='createOuter'>
-                  <CreateSection formType={formTypeGroup} joinedItems={props.groups} handleRedirect={handleRedirect} handlejoinedItemClick={onGroupClick}  handleCreate={() => setGroupFormDisplay(true)}/>
+              <div
+                className={
+                  props.leagues.length < 1
+                    ? 'marginTopLarge col-md-8'
+                    : 'col-md-8'
+                }
+              >
+                <div className="createOuter">
+                  <CreateSection
+                    formType={formTypeGroup}
+                    joinedItems={props.groups}
+                    handleRedirect={handleRedirect}
+                    handlejoinedItemClick={onGroupClick}
+                    handleCreate={() => setGroupFormDisplay(true)}
+                  />
                 </div>
               </div>
-              <div className={props.leagues.length > 0 ? 'marginTopL57 col-md-4' : 'col-md-4'}>
-                <div className='leagueBoardsContainer'>
-                  <div className='leaguesContainerHeader'>
-                    <img className='users' src={users} alt="users icon" />
-                    <p className='leaguesBoardHeader'>FEATURED GROUPS</p>
+              <div
+                className={
+                  props.leagues.length > 0
+                    ? 'marginTopL57 col-md-4'
+                    : 'col-md-4'
+                }
+              >
+                <div className="leagueBoardsContainer">
+                  <div className="leaguesContainerHeader">
+                    <img className="users" src={users} alt="users icon" />
+                    <p className="leaguesBoardHeader">FEATURED GROUPS</p>
                   </div>
-                  {renderIf(props.topPublicGroups.length > 0,
-                    <div className='container tableContainer'>
+                  {renderIf(
+                    props.topPublicGroups.length > 0,
+                    <div className="container tableContainer">
                       <div>
-                        <p className='tableHeadline hideMed'>FEATURED GROUPS</p>
-                        <div className='tableColumnDiv groupTableColumnDiv'>
-                          <p className='tableColumn columnName'> GROUP NAME </p>
-                          <p className='tableColumn columnCreator'> CREATOR </p>
-                          <p className='tableColumn columnSize'> SIZE </p>
+                        <p className="tableHeadline hideMed">FEATURED GROUPS</p>
+                        <div className="tableColumnDiv groupTableColumnDiv">
+                          <p className="tableColumn columnName"> GROUP NAME </p>
+                          <p className="tableColumn columnCreator"> CREATOR </p>
+                          <p className="tableColumn columnSize"> SIZE </p>
                         </div>
                       </div>
                       {props.topPublicGroups.map(topPublicGroup => {
-                        let boundTopPublicGroupClick = handleBoundTopPublicGroupClick.bind(this, topPublicGroup);
-                        return <div className='rowColors cursor groupsTableContainer' key={topPublicGroup._id} onClick={boundTopPublicGroupClick}>
-                          <Table item={topPublicGroup} type={formTypeGroup} />
-                        </div>
+                        let boundTopPublicGroupClick =
+                          handleBoundTopPublicGroupClick.bind(
+                            this,
+                            topPublicGroup
+                          );
+                        return (
+                          <div
+                            className="rowColors cursor groupsTableContainer"
+                            key={topPublicGroup._id}
+                            onClick={boundTopPublicGroupClick}
+                          >
+                            <Table item={topPublicGroup} type={formTypeGroup} />
+                          </div>
+                        );
                       })}
-                      <div className='spacerRow'></div>
+                      <div className="spacerRow"></div>
                     </div>
                   )}
-                  </div>
                 </div>
               </div>
-              {renderIf(leagueFormDisplay,
-                <Modal heading='Create League' close={() => setLeagueFormDisplay(false)}>
-                  <LeagueForm 
-                    onComplete={handleLeagueCreate} 
-                  />
-                </Modal>
-              )}
-              {renderIf(groupFormDisplay,
-                <Modal heading='Create Group' close={() => setGroupFormDisplay(false)}>
-                  <GroupForm onComplete={handleGroupCreate} />
-                </Modal>
-              )}
-              {renderIf(profileFormDisplay && props.userProfile && props.userProfile.lastLogin === props.userProfile.createdOn,
-                <Modal heading='Create Profile' close={() => { setProfileFormDisplay(false); handleProfileUpdate(props.userProfile); }}>
-                  <ProfileForm userProfile={props.userProfile} onComplete={handleProfileUpdate} profileAction={profileAction} />
-                </Modal>
-              )}
             </div>
-            {renderIf(props.groups.length > 0,
-              <div className='spacer'></div>
+            {renderIf(
+              leagueFormDisplay,
+              <Modal
+                heading="Create League"
+                close={() => setLeagueFormDisplay(false)}
+              >
+                <LeagueForm onComplete={handleLeagueCreate} />
+              </Modal>
+            )}
+            {renderIf(
+              groupFormDisplay,
+              <Modal
+                heading="Create Group"
+                close={() => setGroupFormDisplay(false)}
+              >
+                <GroupForm onComplete={handleGroupCreate} />
+              </Modal>
+            )}
+            {renderIf(
+              profileFormDisplay &&
+                props.userProfile &&
+                props.userProfile.lastLogin === props.userProfile.createdOn,
+              <Modal
+                heading="Create Profile"
+                close={() => {
+                  setProfileFormDisplay(false);
+                  handleProfileUpdate(props.userProfile);
+                }}
+              >
+                <ProfileForm
+                  userProfile={props.userProfile}
+                  onComplete={handleProfileUpdate}
+                  profileAction={profileAction}
+                />
+              </Modal>
             )}
           </div>
-        )}
-      </section>
-    );
+          {renderIf(props.groups.length > 0, <div className="spacer"></div>)}
+        </div>
+      )}
+    </section>
+  );
 }
 
 let mapStateToProps = state => ({
@@ -258,20 +362,26 @@ let mapDispatchToProps = dispatch => ({
   groupsFetch: groupArr => dispatch(groupsFetchRequest(groupArr)),
   userProfileUpdate: profile => dispatch(userProfileUpdateRequest(profile)),
   sportingEventsFetch: () => dispatch(sportingEventsFetchRequest()),
-  topPublicLeaguesFetch: (sportingEventID, leaguesIDArr) => dispatch(topPublicLeaguesFetchRequest(sportingEventID, leaguesIDArr)),
-  topScoresFetch: sportingeventID => dispatch(topScoresFetchRequest(sportingeventID)),
-  topPublicGroupsFetch: groupsIDArr => dispatch(topPublicGroupsFetchRequest(groupsIDArr)),
+  topPublicLeaguesFetch: (sportingEventID, leaguesIDArr) =>
+    dispatch(topPublicLeaguesFetchRequest(sportingEventID, leaguesIDArr)),
+  topScoresFetch: sportingeventID =>
+    dispatch(topScoresFetchRequest(sportingeventID)),
+  topPublicGroupsFetch: groupsIDArr =>
+    dispatch(topPublicGroupsFetchRequest(groupsIDArr)),
   leagueCreate: league => dispatch(leagueCreateRequest(league)),
   groupCreate: group => dispatch(groupCreateRequest(group)),
   leagueFetchRequest: league => dispatch(leagueFetch(league)),
   groupFetchRequest: group => dispatch(groupFetch(group)),
   leagueJoin: leagueID => dispatch(leagueJoinRequest(leagueID)),
   groupJoin: groupID => dispatch(groupJoinRequest(groupID)),
-  messageBoardLeagueFetch: leagueID => dispatch(messageBoardLeagueFetchRequest(leagueID)),
-  messageBoardGroupFetch: groupID => dispatch(messageBoardGroupFetchRequest(groupID)),
+  messageBoardLeagueFetch: leagueID =>
+    dispatch(messageBoardLeagueFetchRequest(leagueID)),
+  messageBoardGroupFetch: groupID =>
+    dispatch(messageBoardGroupFetchRequest(groupID)),
   commentsFetch: commentArr => dispatch(commentsFetchRequest(commentArr)),
   userPicksFetch: leagueID => dispatch(userPicksFetchRequest(leagueID)),
-  groupProfilesFetch : profileIDs => dispatch(groupProfilesFetchRequest(profileIDs)),
+  groupProfilesFetch: profileIDs =>
+    dispatch(groupProfilesFetchRequest(profileIDs)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingContainer);

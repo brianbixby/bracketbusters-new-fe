@@ -11,10 +11,11 @@ export const signOut = () => {
 };
 
 export const signUpRequest = user => dispatch => {
-  return superagent.post(`${process.env.REACT_APP_API_URL}/api/signup`)
+  return superagent
+    .post(`${process.env.REACT_APP_API_URL}/api/signup`)
     .withCredentials()
     .send(user)
-    .then( res => {
+    .then(res => {
       dispatch(signIn(res.text));
       localStorage.token = res.text;
       return res;
@@ -22,10 +23,11 @@ export const signUpRequest = user => dispatch => {
 };
 
 export const signInRequest = user => dispatch => {
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/signin`)
+  return superagent
+    .get(`${process.env.REACT_APP_API_URL}/api/signin`)
     .withCredentials()
     .auth(user.username, user.password)
-    .then( res => {
+    .then(res => {
       dispatch(signIn(res.text));
       localStorage.token = res.text;
       return res;
@@ -33,9 +35,10 @@ export const signInRequest = user => dispatch => {
 };
 
 export const tokenSignInRequest = token => dispatch => {
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/signin/token`)
+  return superagent
+    .get(`${process.env.REACT_APP_API_URL}/api/signin/token`)
     .set('Authorization', `Bearer ${token}`)
-    .then( res => {
+    .then(res => {
       dispatch(signIn(res.text));
       localStorage.token = res.text;
       return res;

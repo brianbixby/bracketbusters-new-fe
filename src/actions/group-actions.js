@@ -42,7 +42,8 @@ export const groupDelete = group => ({
 
 export const groupCreateRequest = group => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.post(`${process.env.REACT_APP_API_URL}/api/group`)
+  return superagent
+    .post(`${process.env.REACT_APP_API_URL}/api/group`)
     .set('Authorization', `Bearer ${userAuth}`)
     .send(group)
     .then(res => {
@@ -53,7 +54,8 @@ export const groupCreateRequest = group => (dispatch, getState) => {
 
 export const groupFetchRequest = group => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/group/${group._id}`)
+  return superagent
+    .get(`${process.env.REACT_APP_API_URL}/api/group/${group._id}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(groupFetch(res.body));
@@ -63,7 +65,8 @@ export const groupFetchRequest = group => (dispatch, getState) => {
 
 export const groupsFetchRequest = groupsArr => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.post(`${process.env.REACT_APP_API_URL}/api/groups/user`)
+  return superagent
+    .post(`${process.env.REACT_APP_API_URL}/api/groups/user`)
     .set('Authorization', `Bearer ${userAuth}`)
     .send(groupsArr)
     .then(res => {
@@ -74,7 +77,8 @@ export const groupsFetchRequest = groupsArr => (dispatch, getState) => {
 
 export const allPublicGroupsFetchRequest = () => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/groups/all/public`)
+  return superagent
+    .get(`${process.env.REACT_APP_API_URL}/api/groups/all/public`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(allPublicGroupsFetch(res.body));
@@ -82,20 +86,23 @@ export const allPublicGroupsFetchRequest = () => (dispatch, getState) => {
     });
 };
 
-export const topPublicGroupsFetchRequest = groupsIDArr => (dispatch, getState) => {
-  let { userAuth } = getState();
-  return superagent.post(`${process.env.REACT_APP_API_URL}/api/groups/top`)
-    .set('Authorization', `Bearer ${userAuth}`)
-    .send(groupsIDArr)
-    .then(res => {
-      dispatch(topPublicGroupsFetch(res.body));
-      return res.body;
-    });
-};
+export const topPublicGroupsFetchRequest =
+  groupsIDArr => (dispatch, getState) => {
+    let { userAuth } = getState();
+    return superagent
+      .post(`${process.env.REACT_APP_API_URL}/api/groups/top`)
+      .set('Authorization', `Bearer ${userAuth}`)
+      .send(groupsIDArr)
+      .then(res => {
+        dispatch(topPublicGroupsFetch(res.body));
+        return res.body;
+      });
+  };
 
 export const groupDeleteRequest = group => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.delete(`${process.env.REACT_APP_API_URL}/api/group/${group._id}`)
+  return superagent
+    .delete(`${process.env.REACT_APP_API_URL}/api/group/${group._id}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(groupDelete(group));
@@ -105,7 +112,8 @@ export const groupDeleteRequest = group => (dispatch, getState) => {
 
 export const groupUpdateRequest = group => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.put(`${process.env.REACT_APP_API_URL}/api/group/${group._id}`)
+  return superagent
+    .put(`${process.env.REACT_APP_API_URL}/api/group/${group._id}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .send(group)
     .then(res => {
@@ -116,7 +124,8 @@ export const groupUpdateRequest = group => (dispatch, getState) => {
 
 export const groupJoinRequest = groupID => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.put(`${process.env.REACT_APP_API_URL}/api/group/${groupID}/adduser`)
+  return superagent
+    .put(`${process.env.REACT_APP_API_URL}/api/group/${groupID}/adduser`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(groupJoin(res.body));
@@ -126,7 +135,8 @@ export const groupJoinRequest = groupID => (dispatch, getState) => {
 
 export const privateGroupJoinRequest = credentials => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.post(`${process.env.REACT_APP_API_URL}/api/group/private/adduser`)
+  return superagent
+    .post(`${process.env.REACT_APP_API_URL}/api/group/private/adduser`)
     .set('Authorization', `Bearer ${userAuth}`)
     .send(credentials)
     .then(res => {

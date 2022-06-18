@@ -30,11 +30,11 @@
   margin-bottom: 12px;
   color: #1d1e1f;
 }
-.hideMedium{
+.hideMedium {
   .mainContainer {
     width: 294px;
     margin-left: 0;
-  
+
     .mainContainerSectionWrapper {
       box-shadow: none;
       margin: 0;
@@ -58,8 +58,8 @@
 
 @media (min-width: 582px) {
   .allTableContainer p {
-      width: 550px;
-      margin: auto;
+    width: 550px;
+    margin: auto;
   }
 }
 @media (min-width: 660px) {
@@ -67,18 +67,18 @@
     padding: 0 39px;
   }
 }
-@media(min-width: 992px) {
-  .hideLarge{
+@media (min-width: 992px) {
+  .hideLarge {
     display: none;
   }
 }
-@media(max-width: 1199px) and (min-width: 992px) {
+@media (max-width: 1199px) and (min-width: 992px) {
   .allTableOuter .allTableColumnDiv {
     padding: 0 15px;
   }
 }
 
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .hideMedium {
     display: none;
   }

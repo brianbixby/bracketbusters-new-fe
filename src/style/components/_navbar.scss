@@ -1,9 +1,10 @@
-
-@import './../lib/vars'; 
-.github, .linkedin {
+@import './../lib/vars';
+.github,
+.linkedin {
   display: none;
 }
-.introNavbar .github, .introNavbar .linkedin {
+.introNavbar .github,
+.introNavbar .linkedin {
   display: inline-block;
 }
 .navbar {
@@ -15,14 +16,16 @@
   z-index: 101;
   border: none;
   background: #2b2c2d;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
 
-  .linkedin, .github  {
+  .linkedin,
+  .github {
     height: 20px;
     transition: all 0.35s cubic-bezier(0.77, 0, 0.175, 1);
   }
-  .linkedin:hover, .github:hover {
-    opacity: .8;
+  .linkedin:hover,
+  .github:hover {
+    opacity: 0.8;
   }
   .caretDown {
     height: 15px;
@@ -38,7 +41,7 @@
     margin-top: -4px;
   }
 
-  .avatar{
+  .avatar {
     display: inline-block;
 
     img {
@@ -78,8 +81,9 @@
     background: #2b2c2d;
 
     .avatarDiv:hover {
-      .caretDown, .noProfileImageNav {
-        opacity: .8;
+      .caretDown,
+      .noProfileImageNav {
+        opacity: 0.8;
       }
     }
 
@@ -122,19 +126,19 @@
         right: 0;
         top: 44px;
         padding: 5px 30px 15px 30px;
-        border-bottom-left-radius: .5vw;
-        border-bottom-right-radius: .5vw;
+        border-bottom-left-radius: 0.5vw;
+        border-bottom-right-radius: 0.5vw;
         text-transform: uppercase;
         background: #2b2c2d;
         z-index: -1;
         transform: translateY(-100px);
-        transition: transform .4s ease-in;
+        transition: transform 0.4s ease-in;
 
         .link {
           display: block;
           text-decoration: none;
           cursor: pointer;
-          transition: all 0.35s cubic-bezier(0.77, 0, 0.175, 1); 
+          transition: all 0.35s cubic-bezier(0.77, 0, 0.175, 1);
         }
       }
       .dropdownDiv.slideIn {
@@ -144,34 +148,42 @@
         transform: translateY(-100%);
       }
     }
-    
+
     .social:nth-child(2) {
-        margin-right: 8px;
+      margin-right: 8px;
     }
     .social:nth-child(3) {
-        margin-right: 16px;
+      margin-right: 16px;
     }
   }
-  
-  .logo-text, .social-icons, .colorChangeHover, .dropdownDiv .link {
-    color: #FFF;
+
+  .logo-text,
+  .social-icons,
+  .colorChangeHover,
+  .dropdownDiv .link {
+    color: #fff;
   }
-  .logo-text:hover, .social:hover .social-icons, .avatarDiv:hover .colorChangeHover, .dropdownDiv .link:hover {
-    color: rgba(255,255,255, 0.8);
+  .logo-text:hover,
+  .social:hover .social-icons,
+  .avatarDiv:hover .colorChangeHover,
+  .dropdownDiv .link:hover {
+    color: rgba(255, 255, 255, 0.8);
   }
 }
 .introNavbar {
-  background: #FFF;
+  background: #fff;
   box-shadow: none;
 
-  .logo-text, .social-icons {
-    color: #9B9B9B;
+  .logo-text,
+  .social-icons {
+    color: #9b9b9b;
   }
-  .logo-text:hover, .social:hover .social-icons {
-    color: #ECECEC;
+  .logo-text:hover,
+  .social:hover .social-icons {
+    color: #ececec;
   }
-  .socials{
-    background: #FFF;
+  .socials {
+    background: #fff;
   }
 }
 @media only screen and (min-width: 411px) {
@@ -210,7 +222,8 @@
         }
       }
 
-      .linkedin, .github {
+      .linkedin,
+      .github {
         height: 26px;
       }
     }

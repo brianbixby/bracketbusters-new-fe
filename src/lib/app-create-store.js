@@ -1,12 +1,12 @@
-import reducer from "../reducers";
-import thunk from "./redux-thunk";
-import reporter from "./redux-reporter";
-import { createStore, applyMiddleware } from "redux";
-import { createLogger } from "redux-logger";
-import { composeWithDevTools } from "redux-devtools-extension";
+import reducer from '../reducers';
+import thunk from './redux-thunk';
+import reporter from './redux-reporter';
+import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const appCreateStore = () =>
-  process.env.REACT_APP_NODE_ENV !== "production"
+  process.env.REACT_APP_NODE_ENV !== 'production'
     ? createStore(
         reducer,
         composeWithDevTools(applyMiddleware(createLogger(), thunk, reporter))

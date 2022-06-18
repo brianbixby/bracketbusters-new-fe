@@ -1,5 +1,5 @@
-const reduxThunk = (store) => (next) => (action) =>
-  typeof action === "function"
+const reduxThunk = store => next => action =>
+  typeof action === 'function'
     ? action(store.dispatch, store.getState)
     : next(action);
 

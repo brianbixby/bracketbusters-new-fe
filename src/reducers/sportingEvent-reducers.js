@@ -1,13 +1,20 @@
 let validateSportingEvent = sportingEvent => {
-  if(!sportingEvent._id || !sportingEvent.sportingEventName || !sportingEvent.desc || !sportingEvent.createdON) {
-    throw new Error('VALIDATION ERROR: sportingEvent requires a id, name, desc and createdOn.');
+  if (
+    !sportingEvent._id ||
+    !sportingEvent.sportingEventName ||
+    !sportingEvent.desc ||
+    !sportingEvent.createdON
+  ) {
+    throw new Error(
+      'VALIDATION ERROR: sportingEvent requires a id, name, desc and createdOn.'
+    );
   }
 };
 
-let sportingEvent = (state=null, action) => {
+let sportingEvent = (state = null, action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'SPORTINGEVENTS_FETCH':
       return payload;
     case 'SPORTINGEVENT_CREATE':

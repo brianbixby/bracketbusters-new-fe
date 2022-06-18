@@ -3,11 +3,11 @@
   border-radius: 10px;
   margin-bottom: 16px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
 }
 .contentInner {
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.16);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
   margin: 0 16px 16px;
 }
 .pad-16 {
@@ -28,21 +28,21 @@
   font-size: 30px;
   text-align: center;
 }
-.leaguesContainerHeader .users{
+.leaguesContainerHeader .users {
   margin-right: 10px;
   width: 40px;
   height: 40px;
 }
 @media only screen and (min-width: 768px) {
   .contentOuter {
-      box-shadow: none;
+    box-shadow: none;
   }
 }
 @media only screen and (min-width: 992px) {
   .marginTopLarge {
     margin-top: -219px;
   }
-  .marginTopL57{
+  .marginTopL57 {
     margin-top: -22px;
   }
 }
@@ -50,7 +50,7 @@
   .marginTopLarge {
     margin-top: -202px;
   }
-  .marginTopL57{
+  .marginTopL57 {
     margin-top: -41px;
   }
 }

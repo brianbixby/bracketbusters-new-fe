@@ -1,20 +1,23 @@
 let validateUserProfile = userProfile => {
-  if(!userProfile.userID || !userProfile.username){
-    throw  new Error('VALIDATION ERROR: user profile requires a photo or bio');
+  if (!userProfile.userID || !userProfile.username) {
+    throw new Error('VALIDATION ERROR: user profile requires a photo or bio');
   }
 };
 
-let userProfile = (state=null, action) => {
+let userProfile = (state = null, action) => {
   let { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case 'USERPROFILE_CREATE':
       validateUserProfile(payload);
       return payload;
     case 'USERPROFILE_UPDATE':
-      if(!state) throw new Error('USAGE ERROR: can not update when user profile is null');
+      if (!state)
+        throw new Error(
+          'USAGE ERROR: can not update when user profile is null'
+        );
       validateUserProfile(payload);
-      return {...state, ...payload};
+      return { ...state, ...payload };
     case 'USERPROFILE_FETCH':
       return payload;
     case 'LEAGUE_JOIN':

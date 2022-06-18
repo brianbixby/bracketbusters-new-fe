@@ -12,7 +12,8 @@ export const topScoresFetch = scores => ({
 
 export const scoreBoardsFetchRequest = leagueID => (dispatch, getState) => {
   let { userAuth } = getState();
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/scoreboards/${leagueID}`)
+  return superagent
+    .get(`${process.env.REACT_APP_API_URL}/api/scoreboards/${leagueID}`)
     .set('Authorization', `Bearer ${userAuth}`)
     .then(res => {
       dispatch(scoreBoardsFetch(res.body));
@@ -20,12 +21,16 @@ export const scoreBoardsFetchRequest = leagueID => (dispatch, getState) => {
     });
 };
 
-export const topScoresFetchRequest = sportingeventID => (dispatch, getState) => {
-  let { userAuth } = getState();
-  return superagent.get(`${process.env.REACT_APP_API_URL}/api/scoreboards/sportingevent/${sportingeventID}`)
-    .set('Authorization', `Bearer ${userAuth}`)
-    .then(res => {
-      dispatch(topScoresFetch(res.body));
-      return res.body;
-    });
-};
+export const topScoresFetchRequest =
+  sportingeventID => (dispatch, getState) => {
+    let { userAuth } = getState();
+    return superagent
+      .get(
+        `${process.env.REACT_APP_API_URL}/api/scoreboards/sportingevent/${sportingeventID}`
+      )
+      .set('Authorization', `Bearer ${userAuth}`)
+      .then(res => {
+        dispatch(topScoresFetch(res.body));
+        return res.body;
+      });
+  };
