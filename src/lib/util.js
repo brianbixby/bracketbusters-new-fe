@@ -24,7 +24,7 @@ export const userValidation = async (props, navigate, redirect = true) => {
     if (props.userAuth) {
       await props.sportingEventsFetch();
     } else {
-      const token = JSON.parse(localStorage.getItem('token'));
+      const token = localStorage.getItem('Bracket-Busters-Token');
       if (token) {
         await props.tokenSignIn(token);
         const sportingEvent = await props.sportingEventsFetch();

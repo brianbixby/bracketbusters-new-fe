@@ -22,7 +22,7 @@ function Navbar(props) {
 
   const tokenCheck = () => {
     if (!props.userAuth) {
-      let token = localStorage.token;
+      const token = localStorage.getItem('Bracket-Busters-Token');
       if (!token) setIntro(true);
     } else {
       setIntro(false);

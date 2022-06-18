@@ -6,7 +6,7 @@ export const signIn = token => ({
 });
 
 export const signOut = () => {
-  delete localStorage.token;
+  localStorage.removeItem('Bracket-Busters-Token');
   return { type: 'SIGN_OUT' };
 };
 
@@ -17,7 +17,7 @@ export const signUpRequest = user => dispatch => {
     .send(user)
     .then(res => {
       dispatch(signIn(res.text));
-      localStorage.token = res.text;
+      localStorage.setItem('Bracket-Busters-Token', res.text);
       return res;
     });
 };
@@ -29,7 +29,7 @@ export const signInRequest = user => dispatch => {
     .auth(user.username, user.password)
     .then(res => {
       dispatch(signIn(res.text));
-      localStorage.token = res.text;
+      localStorage.setItem('Bracket-Busters-Token', res.text);
       return res;
     });
 };
@@ -40,7 +40,7 @@ export const tokenSignInRequest = token => dispatch => {
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(signIn(res.text));
-      localStorage.token = res.text;
+      localStorage.setItem('Bracket-Busters-Token', res.text);
       return res;
     });
 };
