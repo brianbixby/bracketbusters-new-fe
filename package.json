@@ -19,6 +19,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
     "sass": "^1.52.3",
     "superagent": "^7.1.6",
     "validator": "^13.7.0",
@@ -50,7 +51,6 @@
   },
   "devDependencies": {
     "eslint": "^8.18.0",
-    "prettier": "^2.7.1",
-    "redux-logger": "^3.0.6"
+    "prettier": "^2.7.1"
   }
 }
