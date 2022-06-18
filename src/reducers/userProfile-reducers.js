@@ -12,10 +12,11 @@ let userProfile = (state = null, action) => {
       validateUserProfile(payload);
       return payload;
     case 'USERPROFILE_UPDATE':
-      if (!state)
+      if (!state) {
         throw new Error(
           'USAGE ERROR: can not update when user profile is null'
         );
+      }
       validateUserProfile(payload);
       return { ...state, ...payload };
     case 'USERPROFILE_FETCH':

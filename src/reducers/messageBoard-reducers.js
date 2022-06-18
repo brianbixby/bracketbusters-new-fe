@@ -21,8 +21,9 @@ let messageBoard = (state = [], action) => {
     case 'MESSAGEBOARD_FETCH':
       return [payload, ...state];
     case 'LEAGUE_DELETE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not delete league not in state');
+      }
       validateLeague(payload);
       return state.filter(league => league._id !== payload._id);
     case 'SIGN_OUT':

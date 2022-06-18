@@ -26,8 +26,9 @@ let league = (state = [], action) => {
       validateLeague(payload);
       return [payload, ...state];
     case 'LEAGUE_UPDATE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not update league not in state');
+      }
       validateLeague(payload);
       return state.map(league =>
         league._id === payload._id ? payload : league

@@ -9,16 +9,18 @@ let currentGroup = (state = {}, action) => {
     case 'GROUP_JOIN':
       return payload;
     case 'GROUP_UPDATE':
-      if (state === {})
+      if (state === {}) {
         throw new Error(
           'USAGE ERROR: can not update group not in state, currentGroup reducer'
         );
+      }
       return payload;
     case 'GROUP_DELETE':
-      if (state === {})
+      if (state === {}) {
         throw new Error(
           'USAGE ERROR: can not delete group not in state, currentGroup reducer'
         );
+      }
       return {};
     case 'SIGN_OUT':
       return {};

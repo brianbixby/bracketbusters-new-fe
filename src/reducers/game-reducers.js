@@ -19,8 +19,9 @@ let game = (state = [], action) => {
     case 'GAMES_FETCH':
       return payload;
     case 'GAME_UPDATE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not update game not in state');
+      }
       validateGame(payload);
       return state.map(game => (game._id === payload._id ? payload : game));
     case 'USER_PICK_CREATE':

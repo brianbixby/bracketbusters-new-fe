@@ -10,7 +10,9 @@ export const checkAndAdd = (payload, state) => {
   var found = state.some(function (el) {
     return el._id === payload._id;
   });
-  if (!found) state.push(payload);
+  if (!found) {
+    state.push(payload);
+  }
   return state;
 };
 
@@ -48,7 +50,9 @@ export const userValidation = async (props, navigate, redirect = true) => {
           returnObj.leagues
         );
         await props.topScoresFetch(returnObj.sportingEventID);
-        if (!returnObj.groups) returnObj.groups = [];
+        if (!returnObj.groups) {
+          returnObj.groups = [];
+        }
         await props.topPublicGroupsFetch(returnObj.groups);
       } else {
         const event = await props.sportingEventsFetch();

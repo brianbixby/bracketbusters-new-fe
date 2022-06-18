@@ -15,10 +15,11 @@ let currentLeague = (state = {}, action) => {
         );
       return payload;
     case 'LEAGUE_DELETE':
-      if (state === {})
+      if (state === {}) {
         throw new Error(
           'USAGE ERROR: can not delete league not in state, currentLeague reducer'
         );
+      }
       return {};
     case 'SIGN_OUT':
       return {};

@@ -16,8 +16,9 @@ let userPick = (state = [], action) => {
 
   switch (type) {
     case 'USER_PICK_UPDATE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not update a userpick not in state');
+      }
       validateUserPick(payload);
       return state.map(userPick =>
         userPick._id === payload._id ? payload : userPick

@@ -28,13 +28,15 @@ let group = (state = [], action) => {
       validateGroup(payload);
       return [payload, ...state];
     case 'GROUP_UPDATE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not update group not in state');
+      }
       validateGroup(payload);
       return state.map(group => (group._id === payload._id ? payload : group));
     case 'GROUP_DELETE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not delete group not in state');
+      }
       validateGroup(payload);
       return state.filter(item => item._id !== payload._id);
     case 'GROUP_JOIN':
