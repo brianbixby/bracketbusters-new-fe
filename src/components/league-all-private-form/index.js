@@ -1,4 +1,5 @@
 import React from 'react';
+import { isAlphanumeric, isAscii } from 'validator';
 
 import Tooltip from '../helpers/tooltip';
 import { classToggler } from '../../lib/util';
@@ -30,11 +31,30 @@ class LeagueAllPrivateForm extends React.Component {
     let setError = (name, error) => (errors[`${name}Error`] = error);
     let deleteError = name => (errors[`${name}Error`] = null);
 
-    if (!value) {
-      setError(name, `${name} can not be empty`);
-    } else {
-      deleteError(name);
+    if (name === 'leagueName') {
+      if (!value) {
+        setError(name, `${name} can not be empty`);
+      } else if (!isAlphanumeric(value)) {
+        setError(name, 'leagueName can only contain letters and numbers');
+      } else {
+        deleteError(name);
+      }
     }
+
+    if (name === 'password') {
+      if (!value) {
+        setError(name, `${name} can not be empty`);
+      } else if (!isAscii(value)) {
+        setError(name, 'password may only contain normal characters');
+      } else {
+        deleteError(name);
+      }
+    }
+    // if (!value) {
+    //   setError(name, `${name} can not be empty`);
+    // } else {
+    //   deleteError(name);
+    // }
 
     this.setState({
       ...errors,
@@ -59,7 +79,12 @@ class LeagueAllPrivateForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     if (!this.state.error) {
-      this.props.onComplete(this.state);
+      this.props.onComplete(this.state, this.handleError).catch(err => {
+        this.setState({
+          error: err,
+          submitted: true,
+        });
+      });
     }
     this.setState(state => ({
       submitted: true,
@@ -67,6 +92,16 @@ class LeagueAllPrivateForm extends React.Component {
         state.leagueNameError || state.leagueName ? null : 'required',
       passwordError: state.passwordError || state.password ? null : 'required',
     }));
+  };
+  handleError = err => {
+    const leagueNameError =
+      err.status === 401
+        ? 'league name or password incorrect'
+        : 'Error: please double check your credentials';
+
+    this.setState({
+      leagueNameError,
+    });
   };
   render() {
     let { focused, submitted, passwordError, leagueNameError } = this.state;
@@ -101,6 +136,7 @@ class LeagueAllPrivateForm extends React.Component {
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          autoComplete="new-password"
         />
         <Tooltip
           message={passwordError}

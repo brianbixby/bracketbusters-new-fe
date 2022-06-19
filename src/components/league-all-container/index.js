@@ -46,8 +46,7 @@ function LeagueAllContainer(props) {
         props.commentsFetch(messageBoard.comments);
       })
       .then(() => props.userPicksFetch(league._id))
-      .then(() => navigate(`/league/${league._id}`))
-      .catch(logError);
+      .then(() => navigate(`/league/${league._id}`));
   };
   const handleLeagueJoin = league => {
     if (props.leagues.some(leagues => leagues._id === league._id)) {
@@ -57,11 +56,10 @@ function LeagueAllContainer(props) {
         .leagueJoin(league._id)
         .then(() => props.messageBoardLeagueFetch(league._id))
         .then(messageBoard => props.commentsFetch(messageBoard.comments))
-        .then(() => navigate(`/league/${league._id}`))
-        .catch(logError);
+        .then(() => navigate(`/league/${league._id}`));
     }
   };
-  const handlePrivateLeagueJoin = credentials => {
+  const handlePrivateLeagueJoin = (credentials, errCB) => {
     let league;
     if (
       props.leagues.some(leagues => {
@@ -72,7 +70,10 @@ function LeagueAllContainer(props) {
         }
       })
     ) {
-      onLeagueClick(league);
+      onLeagueClick(league).catch(err => {
+        logError(err);
+        errCB(err);
+      });
     } else {
       return props
         .privateLeagueJoin(credentials)
@@ -82,7 +83,10 @@ function LeagueAllContainer(props) {
           return messageBoard.leagueID;
         })
         .then(leagueID => navigate(`/league/${leagueID}`))
-        .catch(logError);
+        .catch(err => {
+          logError(err);
+          errCB(err);
+        });
     }
   };
   const handleShowAll = () => {

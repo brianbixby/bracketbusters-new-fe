@@ -20,13 +20,20 @@ class LeagueForm extends React.Component {
           poolSizeError: null,
           leagueNameAvailable: true,
           passwordError: null,
+          mottoError: null,
           error: null,
           focused: null,
           submitted: false,
         };
   }
   componentWillUnmount() {
-    this.setState({ leagueName: '', privacy: 'public', password: '' });
+    this.setState({
+      leagueName: '',
+      privacy: 'public',
+      password: '',
+      motto: '',
+      image: '',
+    });
   }
   validateInput = e => {
     let { name, value } = e.target;
@@ -34,6 +41,7 @@ class LeagueForm extends React.Component {
     let errors = {
       passwordError: this.state.passwordError,
       leagueNameError: this.state.leagueNameError,
+      mottoError: this.state.mottoError,
     };
 
     let setError = (name, error) => (errors[`${name}Error`] = error);
@@ -43,7 +51,7 @@ class LeagueForm extends React.Component {
       if (!value) {
         setError(name, `${name} can not be empty`);
       } else if (!isAscii(value)) {
-        setError(name, 'password may only contain normal charachters');
+        setError(name, 'password may only contain normal characters');
       } else {
         deleteError(name);
       }
@@ -53,7 +61,15 @@ class LeagueForm extends React.Component {
       if (!value && this.state.privacy === 'private') {
         setError(name, `${name} can not be empty`);
       } else if (!isAscii(value)) {
-        setError(name, 'password may only contain normal charachters');
+        setError(name, 'password may only contain normal characters');
+      } else {
+        deleteError(name);
+      }
+    }
+
+    if (name === 'motto') {
+      if (!value) {
+        setError(name, `Description can not be empty`);
       } else {
         deleteError(name);
       }
@@ -61,7 +77,11 @@ class LeagueForm extends React.Component {
 
     this.setState({
       ...errors,
-      error: !!(errors.leagueNameError || errors.passwordError),
+      error: !!(
+        errors.leagueNameError ||
+        errors.passwordError ||
+        errors.mottoError
+      ),
     });
   };
   handleFocus = e => this.setState({ focused: e.target.name });
@@ -93,9 +113,8 @@ class LeagueForm extends React.Component {
     e.preventDefault();
     if (!this.state.error) {
       this.props.onComplete(this.state).catch(err => {
-        console.error(err);
         this.setState({
-          error: true,
+          error: err || true,
           submitted: true,
         });
       });
@@ -105,6 +124,7 @@ class LeagueForm extends React.Component {
       leagueNameError:
         state.leagueNameError || state.leagueName ? null : 'required',
       passwordError: state.passwordError || state.password ? null : 'required',
+      mottoError: state.mottoError || state.motto ? null : 'required',
     }));
   };
   render() {
@@ -114,6 +134,7 @@ class LeagueForm extends React.Component {
       leagueName,
       passwordError,
       leagueNameError,
+      mottoError,
       leagueNameAvailable,
     } = this.state;
     let buttonText = this.props.league ? 'update' : 'create';
@@ -170,6 +191,7 @@ class LeagueForm extends React.Component {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
         />
+        <Tooltip message={mottoError} show={focused === 'motto' || submitted} />
         <div className="radio-div">
           <p className="labelDesc">Privacy:</p>
           <div>

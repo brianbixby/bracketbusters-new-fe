@@ -48,8 +48,7 @@ function GroupAllContainer(props) {
       .then(messageBoard => {
         props.commentsFetch(messageBoard.comments);
       })
-      .then(() => navigate(`/group/${group._id}`))
-      .catch(logError);
+      .then(() => navigate(`/group/${group._id}`));
   };
   const handleGroupJoin = group => {
     if (props.groups.some(groups => groups._id === group._id)) {
@@ -60,11 +59,10 @@ function GroupAllContainer(props) {
         .then(() => props.groupJoin(group._id))
         .then(() => props.messageBoardGroupFetch(group._id))
         .then(messageBoard => props.commentsFetch(messageBoard.comments))
-        .then(() => navigate(`/group/${group._id}`))
-        .catch(logError);
+        .then(() => navigate(`/group/${group._id}`));
     }
   };
-  const handlePrivateGroupJoin = credentials => {
+  const handlePrivateGroupJoin = (credentials, errCB) => {
     let group;
     if (
       props.groups.some(groups => {
@@ -73,7 +71,10 @@ function GroupAllContainer(props) {
         }
       })
     ) {
-      onGroupClick(group);
+      onGroupClick(group).catch(err => {
+        logError(err);
+        errCB(err);
+      });
     } else {
       return props
         .privateGroupJoin(credentials)
@@ -87,7 +88,10 @@ function GroupAllContainer(props) {
           return messageBoard.groupID;
         })
         .then(groupID => navigate(`/group/${groupID}`))
-        .catch(logError);
+        .catch(err => {
+          logError(err);
+          errCB(err);
+        });
     }
   };
   const handleShowAll = () => {

@@ -31,7 +31,7 @@ class UserPickItem extends React.Component {
   }
   componentDidUpdate(prevProps) {
     console.log('componentdidupdate');
-    if (this.props.props.userPick !== prevProps.props.userPick) {
+    if (this.props.userPick !== prevProps.userPick) {
       console.log('component did update: updated');
       this.setState(this.props.userPick);
     }

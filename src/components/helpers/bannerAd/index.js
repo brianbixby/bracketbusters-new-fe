@@ -4,7 +4,9 @@ function BannerAd() {
   return (
     <div
       className="bbBannerAd"
-      onClick={() => window.open('https://www.builtbybixby.us', '_blank')}
+      onClick={() =>
+        window.open('https://intense-spire-62825.herokuapp.com/', '_blank')
+      }
     >
       <p>
         <span className="company">BUILT BY BIXBY</span>

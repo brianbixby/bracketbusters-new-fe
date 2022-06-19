@@ -2,8 +2,8 @@ import React from 'react';
 import kd from './../assets/2.png';
 import steph from './../assets/1.png';
 
-function Slider() {
-  let { joinedItem, formType } = this.props;
+function Slider(props) {
+  let { joinedItem, formType } = props;
 
   let itemImage =
     formType === 'league' ? (

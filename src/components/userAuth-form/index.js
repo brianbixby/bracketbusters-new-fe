@@ -60,7 +60,7 @@ class UserAuthForm extends React.Component {
       if (!value) {
         setError(name, `${name} can not be empty`);
       } else if (!isAscii(value)) {
-        setError(name, 'password may only contain normal charachters');
+        setError(name, 'password may only contain normal characters');
       } else {
         deleteError(name);
       }
@@ -104,9 +104,8 @@ class UserAuthForm extends React.Component {
     e.preventDefault();
     if (!this.state.error) {
       this.props.onComplete(this.state, this.handleError).catch(err => {
-        console.log('err: ', err);
         this.setState({
-          error: true,
+          error: err,
           submitted: true,
         });
       });

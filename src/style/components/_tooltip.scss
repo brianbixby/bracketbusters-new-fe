@@ -30,11 +30,16 @@
     }
   }
 }
+.league-form .tooltip section,
+.group-form .tooltip section {
+  transform: translateY(-17px);
+}
 .leagues-container {
   .hideLarge .tooltip section {
     transform: translateY(-30px);
     margin-left: 26px;
   }
+
   .hideMedium .tooltip section {
     transform: translateY(-30px);
     margin-left: 10px;

@@ -14,7 +14,7 @@ class ProfileForm extends React.Component {
   }
   componentDidUpdate(prevProps) {
     console.log('componentdidupdate');
-    if (this.props.props.userProfile !== prevProps.props.userProfile) {
+    if (this.props.userProfile !== prevProps.userProfile) {
       console.log('component did update: updated');
       this.setState(this.props.userProfile);
     }

@@ -98,13 +98,13 @@ function CreateSection(props) {
         <div className="container">
           <div className="sliderOuter">
             <div className="sliderOuterWrapper">
-              {props.joinedItems.map(joinedItem => {
+              {props.joinedItems.map((joinedItem, idx) => {
                 let boundJoinedItemClick = props.handlejoinedItemClick.bind(
                   this,
                   joinedItem
                 );
                 return (
-                  <div className="sliderInnerWrapper" key={joinedItem._id}>
+                  <div className="sliderInnerWrapper" key={idx}>
                     <div className="cardOuter" onClick={boundJoinedItemClick}>
                       <Slider
                         joinedItem={joinedItem}

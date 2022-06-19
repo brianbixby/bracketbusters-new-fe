@@ -9,10 +9,11 @@ let currentLeague = (state = {}, action) => {
     case 'LEAGUE_JOIN':
       return payload;
     case 'LEAGUE_UPDATE':
-      if (state === {})
+      if (state === {}) {
         throw new Error(
           'USAGE ERROR: can not update league not in state, currentLeague reducer'
         );
+      }
       return payload;
     case 'LEAGUE_DELETE':
       if (state === {}) {

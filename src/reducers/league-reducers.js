@@ -34,8 +34,9 @@ let league = (state = [], action) => {
         league._id === payload._id ? payload : league
       );
     case 'LEAGUE_DELETE':
-      if (state === [])
+      if (state === []) {
         throw new Error('USAGE ERROR: can not delete league not in state');
+      }
       validateLeague(payload);
       return state.filter(league => league._id !== payload._id);
     case 'LEAGUE_JOIN':

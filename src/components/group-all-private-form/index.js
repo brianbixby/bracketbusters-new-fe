@@ -1,4 +1,5 @@
 import React from 'react';
+import { isAlphanumeric, isAscii } from 'validator';
 
 import Tooltip from '../helpers/tooltip';
 import { classToggler } from '../../lib/util.js';
@@ -30,11 +31,31 @@ class GroupAllPrivateForm extends React.Component {
     let setError = (name, error) => (errors[`${name}Error`] = error);
     let deleteError = name => (errors[`${name}Error`] = null);
 
-    if (!value) {
-      setError(name, `${name} can not be empty`);
-    } else {
-      deleteError(name);
+    if (name === 'groupName') {
+      if (!value) {
+        setError(name, `${name} can not be empty`);
+      } else if (!isAlphanumeric(value)) {
+        setError(name, 'groupName can only contain letters and numbers');
+      } else {
+        deleteError(name);
+      }
     }
+
+    if (name === 'password') {
+      if (!value) {
+        setError(name, `${name} can not be empty`);
+      } else if (!isAscii(value)) {
+        setError(name, 'password may only contain normal characters');
+      } else {
+        deleteError(name);
+      }
+    }
+
+    // if (!value) {
+    //   setError(name, `${name} can not be empty`);
+    // } else {
+    //   deleteError(name);
+    // }
 
     this.setState({
       ...errors,
@@ -59,7 +80,14 @@ class GroupAllPrivateForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     if (!this.state.error) {
-      this.props.onComplete(this.state);
+      //   this.props.onComplete(this.state);
+
+      this.props.onComplete(this.state, this.handleError).catch(err => {
+        this.setState({
+          error: err,
+          submitted: true,
+        });
+      });
     }
     this.setState(state => ({
       submitted: true,
@@ -67,6 +95,16 @@ class GroupAllPrivateForm extends React.Component {
         state.groupNameError || state.groupName ? null : 'required',
       passwordError: state.passwordError || state.password ? null : 'required',
     }));
+  };
+  handleError = err => {
+    const groupNameError =
+      err.status === 401
+        ? 'groupname or password incorrect'
+        : 'Error: please double check your credentials';
+
+    this.setState({
+      groupNameError,
+    });
   };
   render() {
     let { focused, submitted, passwordError, groupNameError } = this.state;
@@ -101,6 +139,7 @@ class GroupAllPrivateForm extends React.Component {
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          autoComplete="new-password"
         />
         <Tooltip
           message={passwordError}
