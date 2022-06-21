@@ -47,9 +47,9 @@ import MessageBoardContainer from '../message-board-container';
 import Table from '../helpers/table';
 import BannerAd from '../helpers/bannerAd';
 import { userValidation, logError, renderIf } from '../../lib/util.js';
-import nbalogo from './../helpers/assets/nba-logo.png';
-import basketball from './../helpers/assets/basketball.png';
-import kd from './../helpers/assets/2.png';
+import nbalogo from './../helpers/assets/nba-logo.webp';
+import basketball from './../helpers/assets/basketball.webp';
+import kd from './../helpers/assets/2.webp';
 import users from './../helpers/assets/icons/users.icon.svg';
 import info from './../helpers/assets/icons/info.icon.svg';
 

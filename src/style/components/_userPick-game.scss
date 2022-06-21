@@ -4,7 +4,7 @@
   .picksGamesHeader {
     text-align: center;
     color: #fff;
-    background: url('./../../components/helpers/assets/3.png') no-repeat scroll
+    background: url('./../../components/helpers/assets/3.webp') no-repeat scroll
       center -517px transparent;
     text-transform: uppercase;
   }
@@ -179,7 +179,7 @@
       }
     }
     .middle {
-      background: url('./../../components/helpers/assets/3.png') no-repeat
+      background: url('./../../components/helpers/assets/3.webp') no-repeat
         scroll -203px -240px transparent;
       height: 40px;
       left: 241.5px;
@@ -214,7 +214,7 @@
 
         .sliderButton {
           // background: #8b8b8b;
-          background: url('./../../components/helpers/assets/3.png') no-repeat
+          background: url('./../../components/helpers/assets/3.webp') no-repeat
             scroll -205px -311px transparent;
           height: 30px;
           width: 75px;
@@ -235,7 +235,7 @@
           }
         }
         .homeTeamPickButtonState {
-          background: url('./../../components/helpers/assets/3.png') no-repeat
+          background: url('./../../components/helpers/assets/3.webp') no-repeat
             scroll -205px -350px transparent;
           left: 6px;
           right: auto;
@@ -246,7 +246,7 @@
           transition: right 0.3s ease;
         }
         .awayTeamPickButtonState {
-          background: url('./../../components/helpers/assets/3.png') no-repeat
+          background: url('./../../components/helpers/assets/3.webp') no-repeat
             scroll -205px -391px transparent;
           right: 6px;
           left: auto;
@@ -309,15 +309,15 @@
   top: 7px;
 }
 .correctPick .correctPickButton {
-  background: url('./../../components/helpers/assets/3.png') no-repeat scroll -324px -350px
+  background: url('./../../components/helpers/assets/3.webp') no-repeat scroll -324px -350px
     transparent;
 }
 .wrongPick .wrongPickButton {
-  background: url('./../../components/helpers/assets/3.png') no-repeat scroll -324px -391px
+  background: url('./../../components/helpers/assets/3.webp') no-repeat scroll -324px -391px
     transparent;
 }
 .lockedPickButton {
-  background: url('./../../components/helpers/assets/3.png') no-repeat scroll -324px -311px
+  background: url('./../../components/helpers/assets/3.webp') no-repeat scroll -324px -311px
     transparent;
   height: 30px;
   width: 90px;

@@ -9,7 +9,7 @@ import {
 } from '../../actions/comment-actions.js';
 import Modal from '../helpers/modal';
 import { logError, renderIf } from './../../lib/util.js';
-import placeholderImage from './../helpers/assets/profilePlaceholder.png';
+import placeholderImage from './../helpers/assets/profilePlaceholder.webp';
 import commentsIcon from './../helpers/assets/icons/comments.icon.svg';
 
 function MessageBoardContainer(props) {

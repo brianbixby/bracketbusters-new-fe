@@ -3,9 +3,9 @@ import React from 'react';
 import JoinSection from './../joinSection';
 import Slider from './../slider';
 import { renderIf } from './../../../lib/util.js';
-import createleague from './../assets/createleague.png';
-import creategroup from './../assets/creategroup.png';
-import nbalogo from './../assets/nba-logo.png';
+import createleague from './../assets/createleague.webp';
+import creategroup from './../assets/creategroup.webp';
+import nbalogo from './../assets/nba-logo.webp';
 import users from './../assets/icons/users.icon.svg';
 
 function CreateSection(props) {
@@ -80,6 +80,7 @@ function CreateSection(props) {
               {renderIf(
                 props.formType === 'group',
                 <img
+                  id="createGroupImg"
                   className="createImg"
                   src={creategroup}
                   alt="Create group icon"

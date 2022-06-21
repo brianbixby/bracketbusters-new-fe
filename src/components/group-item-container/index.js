@@ -39,9 +39,9 @@ import {
   renderIf,
   formatDate,
 } from '../../lib/util.js';
-import basketball from './../helpers/assets/basketball.png';
-import steph from './../helpers/assets/basketball.png';
-import placeholderImage from './../helpers/assets/profilePlaceholder.png';
+import basketball from './../helpers/assets/basketball.webp';
+import steph from './../helpers/assets/basketball.webp';
+import placeholderImage from './../helpers/assets/profilePlaceholder.webp';
 import users from './../helpers/assets/icons/users.icon.svg';
 import info from './../helpers/assets/icons/info.icon.svg';
 

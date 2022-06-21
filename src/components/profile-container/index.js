@@ -35,7 +35,7 @@ function ProfileContainer(props) {
     return props.userProfileUpdate(profile).catch(logError);
   };
   let profileAction = 'update';
-  let placeholderImage = require('./../helpers/assets/profilePlaceholder.png');
+  let placeholderImage = require('./../helpers/assets/profilePlaceholder.webp');
   let profileImage =
     props.userProfile && props.userProfile.image
       ? props.userProfile.image

@@ -39,7 +39,7 @@ import CreateSection from '../helpers/createSection';
 import Table from '../helpers/table';
 import BannerAd from '../helpers/bannerAd';
 import { userValidation, logError, renderIf } from './../../lib/util.js';
-import basketball from './../helpers/assets/basketball.png';
+import basketball from './../helpers/assets/basketball.webp';
 import users from './../helpers/assets/icons/users.icon.svg';
 import './../../style/main.scss';
 
@@ -53,7 +53,7 @@ function LandingContainer(props) {
     userValidation(props, navigate, false);
     props.sportingEventsFetch().catch(err => logError(err));
     console.log(
-      'If you have any questions about my code please email me @BrianBixby0@gmail.com and visit https://www.builtbybixby.us to see my latest projects.'
+      'If you have any questions about my code please email me @BrianBixby0@gmail.com and visit https://www.builtbybixby.com to see my latest projects.'
     );
   }, []);
 
@@ -139,7 +139,7 @@ function LandingContainer(props) {
   let formTypeGroup = 'group';
   let topScores = 'scores';
   let profileAction = 'create';
-  // let slide = require('./../helpers/assets/3.png');
+  // let slide = require('./../helpers/assets/3.webp');
   return (
     <section className="landing-page page-outer-div">
       {renderIf(!props.userAuth, <Intro />)}
