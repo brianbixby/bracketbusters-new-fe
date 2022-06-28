@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -30,9 +30,9 @@ import {
 } from '../../actions/messageBoard-actions.js';
 import { userPicksFetchRequest } from '../../actions/userPick-actions.js';
 import { commentsFetchRequest } from '../../actions/comment-actions.js';
-import MessageBoardContainer from '../message-board-container';
-import Table from '../helpers/table';
-import BannerAd from '../helpers/bannerAd';
+const MessageBoardContainer = lazy(() => import('../message-board-container'));
+const Table = lazy(() => import('../helpers/table'));
+const BannerAd = lazy(() => import('../helpers/bannerAd'));
 import {
   userValidation,
   logError,
@@ -133,9 +133,13 @@ function GroupItemContainer(props) {
   let formTypeGroup = 'group';
   let topScores = 'scores';
   let groupPhoto = currentGroup.image ? (
-    <img className="createImg" src={currentGroup.image} alt="Group icon" />
+    <img
+      className="lazyload createImg"
+      data-src={currentGroup.image}
+      alt="Group icon"
+    />
   ) : (
-    <img className="createImg" src={steph} alt="Steph Curry" />
+    <img className="lazyload createImg" data-src={steph} alt="Steph Curry" />
   );
   return (
     <div className="groupItem-page page-outer-div" id="top">
@@ -147,7 +151,11 @@ function GroupItemContainer(props) {
               <div className="createOuterInner">
                 <div className="outer">
                   <div className="outerLeft">
-                    <img className="users" src={users} alt="Users icon" />
+                    <img
+                      className="lazyload users"
+                      data-src={users}
+                      alt="Users icon"
+                    />
                     <p className="headerText">GROUP</p>
                   </div>
                   <div className="outerRight"></div>
@@ -183,7 +191,11 @@ function GroupItemContainer(props) {
                     </div>
                   </div>
                   <div className="joinImgDiv">
-                    <img className="info" src={info} alt="Info icon" />
+                    <img
+                      className="lazyload info"
+                      data-src={info}
+                      alt="Info icon"
+                    />
                   </div>
                 </div>
               </div>
@@ -212,8 +224,8 @@ function GroupItemContainer(props) {
                                   groupProfile.image,
                                   <div className="cardImageDiv">
                                     <img
-                                      className="groupMemberImg"
-                                      src={groupProfile.image}
+                                      className="lazyload groupMemberImg"
+                                      data-src={groupProfile.image}
                                       alt="Group member profile"
                                     />
                                   </div>
@@ -222,8 +234,8 @@ function GroupItemContainer(props) {
                                   !groupProfile.image,
                                   <div className="cardImageDiv">
                                     <img
-                                      className="groupMemberImgNoPhoto"
-                                      src={placeholderImage}
+                                      className="lazyload groupMemberImgNoPhoto"
+                                      data-src={placeholderImage}
                                       alt="placeholder"
                                     />
                                   </div>
@@ -249,8 +261,8 @@ function GroupItemContainer(props) {
             <div className="leagueBoardsContainer">
               <div className="leaguesContainerHeader">
                 <img
-                  className="leaguesBoardIcon"
-                  src={basketball}
+                  className="lazyload leaguesBoardIcon"
+                  data-src={basketball}
                   alt="Basketball icon"
                 />
                 <p className="leaguesBoardHeader">LEAGUES</p>
@@ -304,7 +316,11 @@ function GroupItemContainer(props) {
             </div>
             <div className="leagueBoardsContainer">
               <div className="leaguesContainerHeader">
-                <img className="users" src={users} alt="Users icon" />
+                <img
+                  className="lazyload users"
+                  data-src={users}
+                  alt="Users icon"
+                />
                 <p className="leaguesBoardHeader">FEATURED GROUPS</p>
               </div>
               <div className="container tableContainer">

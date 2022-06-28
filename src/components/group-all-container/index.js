@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,9 +23,9 @@ import { messageBoardGroupFetchRequest } from '../../actions/messageBoard-action
 import { commentsFetchRequest } from '../../actions/comment-actions.js';
 import { topScoresFetchRequest } from '../../actions/scoreboard-actions.js';
 import { sportingEventsFetchRequest } from '../../actions/sportingEvent-actions.js';
-import GroupAllPrivateForm from '../group-all-private-form';
-import Table from '../helpers/table';
-import BannerAd from '../helpers/bannerAd';
+const GroupAllPrivateForm = lazy(() => import('../group-all-private-form'));
+const Table = lazy(() => import('../helpers/table'));
+const BannerAd = lazy(() => import('../helpers/bannerAd'));
 import { userValidation, logError } from './../../lib/util.js';
 import users from './../helpers/assets/icons/users.icon.svg';
 import lock from './../helpers/assets/icons/lock.icon.svg';
@@ -111,7 +111,11 @@ function GroupAllContainer(props) {
               <div className="mainContainer hideLarge">
                 <div className="mainContainer-header">
                   <div className="left">
-                    <img className="lock" src={lock} alt="Lock icon" />
+                    <img
+                      className="lazyload lock"
+                      data-src={lock}
+                      alt="Lock icon"
+                    />
                     <p className="mainContainerHeader">PRIVATE GROUPS</p>
                   </div>
                 </div>
@@ -131,7 +135,11 @@ function GroupAllContainer(props) {
               <div className="mainContainer">
                 <div className="mainContainer-header">
                   <div className="left">
-                    <img className="users" src={users} alt="Users icon" />
+                    <img
+                      className="lazyload users"
+                      data-src={users}
+                      alt="Users icon"
+                    />
                     <p className="mainContainerHeader">PUBLIC GROUPS</p>
                   </div>
                   <div className="right">
@@ -170,7 +178,11 @@ function GroupAllContainer(props) {
               <div className="mainContainer">
                 <div className="mainContainer-header">
                   <div className="left">
-                    <img className="lock" src={lock} alt="Lock icon" />
+                    <img
+                      className="lazyload lock"
+                      data-src={lock}
+                      alt="Lock icon"
+                    />
                     <p className="mainContainerHeader">PRIVATE GROUPS</p>
                   </div>
                 </div>

@@ -44,7 +44,11 @@ function MessageBoardContainer(props) {
     <div className="wideSectionWrapper messageBoardOuter">
       <div className="outer messageboardHeader">
         <div className="outerLeft">
-          <img className="comments" src={commentsIcon} alt="comments icon" />
+          <img
+            className="lazyload comments"
+            data-src={commentsIcon}
+            alt="comments icon"
+          />
           <p className="headerText">MESSAGE BOARD </p>
         </div>
         <div className="outerRight">

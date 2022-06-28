@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -41,11 +41,11 @@ import {
   messageBoardLeagueFetchRequest,
   messageBoardGroupFetchRequest,
 } from '../../actions/messageBoard-actions.js';
-import GameItem from '../game-item';
-import UserPickItem from '../user-pick-item';
-import MessageBoardContainer from '../message-board-container';
-import Table from '../helpers/table';
-import BannerAd from '../helpers/bannerAd';
+const GameItem = lazy(() => import('../game-item'));
+const UserPickItem = lazy(() => import('../user-pick-item'));
+const MessageBoardContainer = lazy(() => import('../message-board-container'));
+const Table = lazy(() => import('../helpers/table'));
+const BannerAd = lazy(() => import('../helpers/bannerAd'));
 import { userValidation, logError, renderIf } from '../../lib/util.js';
 import nbalogo from './../helpers/assets/nba-logo.webp';
 import basketball from './../helpers/assets/basketball.webp';
@@ -152,9 +152,17 @@ function LeagueContainer(props) {
   let formTypeGroup = 'group';
   let topScores = 'scores';
   let leaguePhoto = currentLeague.image ? (
-    <img className="createImg" src={currentLeague.image} alt="current league" />
+    <img
+      className="lazyload createImg"
+      data-src={currentLeague.image}
+      alt="current league"
+    />
   ) : (
-    <img className="createImg" src={kd} alt="league placeholder" />
+    <img
+      className="lazyload createImg"
+      data-src={kd}
+      alt="league placeholder"
+    />
   );
   let scores = props.scoreBoards.slice(0, scoreBoardsShown);
 
@@ -168,7 +176,11 @@ function LeagueContainer(props) {
               <div className="createOuterInner">
                 <div className="outer">
                   <div className="outerLeft">
-                    <img src={nbalogo} alt="NBA Logo" />
+                    <img
+                      className="lazyload"
+                      data-src={nbalogo}
+                      alt="NBA Logo"
+                    />
                     <p className="headerText">NBA</p>
                   </div>
                   <div className="outerRight"></div>
@@ -204,7 +216,11 @@ function LeagueContainer(props) {
                     </div>
                   </div>
                   <div className="joinImgDiv">
-                    <img className="info" src={info} alt="League info icon" />
+                    <img
+                      className="lazyload info"
+                      data-src={info}
+                      alt="League info icon"
+                    />
                   </div>
                 </div>
               </div>
@@ -249,8 +265,8 @@ function LeagueContainer(props) {
             <div className="leagueBoardsContainer">
               <div className="leaguesContainerHeader">
                 <img
-                  className="leaguesBoardIcon"
-                  src={basketball}
+                  className="lazyload leaguesBoardIcon"
+                  data-src={basketball}
                   alt="Basketball icon"
                 />
                 <p className="leaguesBoardHeader">LEAGUES</p>
@@ -316,7 +332,11 @@ function LeagueContainer(props) {
             </div>
             <div className="leagueBoardsContainer">
               <div className="leaguesContainerHeader">
-                <img className="users" src={users} alt="users icon" />
+                <img
+                  className="lazyload users"
+                  data-src={users}
+                  alt="users icon"
+                />
                 <p className="leaguesBoardHeader">FEATURED GROUPS</p>
               </div>
               <div className="container tableContainer">

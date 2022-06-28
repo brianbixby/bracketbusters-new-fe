@@ -2,7 +2,7 @@ import React from 'react';
 
 const Avatar = props => (
   <div className="avatar">
-    <img src={props.url} alt="user avatar" />
+    <img data-src={props.url} alt="lazyload user avatar" />
   </div>
 );
 

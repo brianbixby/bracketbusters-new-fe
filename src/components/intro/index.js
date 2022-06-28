@@ -162,18 +162,18 @@ class Intro extends React.Component {
           <div className="banner-image">
             <div className="background">
               <img
-                className="intro-background intro-images"
-                src={background}
+                className="lazyload intro-background intro-images"
+                data-src={background}
                 alt="background"
               />
               <img
-                className="intro-curry intro-images"
-                src={curry}
+                className="lazyload intro-curry intro-images"
+                data-src={curry}
                 alt="Steph Curry"
               />
               <img
-                className="intro-lebron intro-images"
-                src={lebron}
+                className="lazyload intro-lebron intro-images"
+                data-src={lebron}
                 alt="Lebron James"
               />
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,18 +30,17 @@ import { commentsFetchRequest } from '../../actions/comment-actions.js';
 import { topScoresFetchRequest } from '../../actions/scoreboard-actions.js';
 import { sportingEventsFetchRequest } from '../../actions/sportingEvent-actions.js';
 import { userPicksFetchRequest } from '../../actions/userPick-actions.js';
-import Intro from '../intro';
-import LeagueForm from '../league-form';
-import GroupForm from '../group-form';
-import ProfileForm from '../profile-form';
-import Modal from '../helpers/modal';
-import CreateSection from '../helpers/createSection';
-import Table from '../helpers/table';
-import BannerAd from '../helpers/bannerAd';
+const Intro = lazy(() => import('../intro'));
+const LeagueForm = lazy(() => import('../league-form'));
+const GroupForm = lazy(() => import('../group-form'));
+const ProfileForm = lazy(() => import('../profile-form'));
+const Modal = lazy(() => import('../helpers/modal'));
+const CreateSection = lazy(() => import('../helpers/createSection'));
+const Table = lazy(() => import('../helpers/table'));
+const BannerAd = lazy(() => import('../helpers/bannerAd'));
 import { userValidation, logError, renderIf } from './../../lib/util.js';
 import basketball from './../helpers/assets/basketball.webp';
 import users from './../helpers/assets/icons/users.icon.svg';
-import './../../style/main.scss';
 
 function LandingContainer(props) {
   let navigate = useNavigate();
@@ -164,8 +163,8 @@ function LandingContainer(props) {
                 <div className="leagueBoardsContainer">
                   <div className="leaguesContainerHeader">
                     <img
-                      className="leaguesBoardIcon"
-                      src={basketball}
+                      className="lazyload leaguesBoardIcon"
+                      data-src={basketball}
                       alt="Basketball icon"
                     />
                     <p className="leaguesBoardHeader">LEAGUES</p>
@@ -262,7 +261,11 @@ function LandingContainer(props) {
               >
                 <div className="leagueBoardsContainer">
                   <div className="leaguesContainerHeader">
-                    <img className="users" src={users} alt="users icon" />
+                    <img
+                      className="lazyload users"
+                      data-src={users}
+                      alt="users icon"
+                    />
                     <p className="leaguesBoardHeader">FEATURED GROUPS</p>
                   </div>
                   {renderIf(

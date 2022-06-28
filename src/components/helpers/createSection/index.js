@@ -18,7 +18,7 @@ function CreateSection(props) {
           props.formType === 'league',
           <div className="outer">
             <div className="outerLeft">
-              <img src={nbalogo} alt="NBA logo" />
+              <img className="lazyload" data-src={nbalogo} alt="NBA logo" />
               <p className="headerText">2018 NBA PLAYOFFS </p>
             </div>
             <div className="outerRight">
@@ -32,7 +32,11 @@ function CreateSection(props) {
           props.formType === 'group',
           <div className="outer">
             <div className="outerLeft">
-              <img className="users" src={users} alt="Users icon" />
+              <img
+                className="lazyload users"
+                data-src={users}
+                alt="Users icon"
+              />
               <p className="headerText">GROUPS </p>
             </div>
             <div className="outerRight">
@@ -72,8 +76,8 @@ function CreateSection(props) {
               {renderIf(
                 props.formType === 'league',
                 <img
-                  className="createImg"
-                  src={createleague}
+                  className="lazyload createImg"
+                  data-src={createleague}
                   alt="Create league icon"
                 />
               )}
@@ -81,8 +85,8 @@ function CreateSection(props) {
                 props.formType === 'group',
                 <img
                   id="createGroupImg"
-                  className="createImg"
-                  src={creategroup}
+                  className="lazyload createImg"
+                  data-src={creategroup}
                   alt="Create group icon"
                 />
               )}

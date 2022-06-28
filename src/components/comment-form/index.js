@@ -35,7 +35,7 @@ function CommentForm(props) {
   return (
     <form onSubmit={handleSubmit} className="form comment-form">
       <div className="photo-div">
-        <img src={props.image} alt="Comment Icon" />
+        <img className="lazyload" data-src={props.image} alt="Comment Icon" />
       </div>
       <div className="commentInput-div">
         <div className="commentInputWrapper">

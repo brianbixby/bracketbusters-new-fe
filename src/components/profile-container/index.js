@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import ProfileForm from '../profile-form';
-import BannerAd from '../helpers/bannerAd';
+const ProfileForm = lazy(() => import('../profile-form'));
+const BannerAd = lazy(() => import('../helpers/bannerAd'));
 import { tokenSignInRequest } from '../../actions/userAuth-actions.js';
 import {
   userProfileFetchRequest,
@@ -79,8 +79,8 @@ function ProfileContainer(props) {
                       <div className="inner-wrapper">
                         <div className="profile-image-div">
                           <img
-                            className="profile-image"
-                            src={profileImage}
+                            className="lazyload profile-image"
+                            data-src={profileImage}
                             alt="profile"
                           />
                         </div>

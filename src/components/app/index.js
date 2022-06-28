@@ -8,6 +8,7 @@ const LeagueItemContainer = lazy(() => import('../league-item-container'));
 const GroupAllContainer = lazy(() => import('../group-all-container'));
 const GroupItemContainer = lazy(() => import('../group-item-container'));
 const ProfileContainer = lazy(() => import('../profile-container'));
+const NotFound = lazy(() => import('../notFound'));
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/groups" element={<GroupAllContainer />} />
           <Route path="/group/:groupID" element={<GroupItemContainer />} />
           <Route path="/user/:profileID" element={<ProfileContainer />} />
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Suspense>
     </div>

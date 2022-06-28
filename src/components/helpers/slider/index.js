@@ -7,14 +7,18 @@ function Slider(props) {
 
   let itemImage =
     formType === 'league' ? (
-      <img className="cardImage" src={kd} alt="Kevin Durant" />
+      <img className="lazyload cardImage" data-src={kd} alt="Kevin Durant" />
     ) : (
-      <img className="cardImage" src={steph} alt="Steph Curry" />
+      <img className="lazyload cardImage" data-src={steph} alt="Steph Curry" />
     );
   let itemName =
     formType === 'league' ? joinedItem.leagueName : joinedItem.groupName;
   let itemImageRender = joinedItem.image ? (
-    <img className="cardImage" src={joinedItem.image} alt="placeholder" />
+    <img
+      className="lazyload cardImage"
+      data-src={joinedItem.image}
+      alt="placeholder"
+    />
   ) : (
     itemImage
   );

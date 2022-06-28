@@ -38,7 +38,7 @@ function Navbar(props) {
     props.userProfile && props.userProfile.image ? (
       <Avatar url={props.userProfile.image} />
     ) : (
-      <img className="noProfileImageNav" src={user} alt="user" />
+      <img className="lazyload noProfileImageNav" data-src={user} alt="user" />
     );
   let profileLink =
     props.userProfile && props.userProfile._id
@@ -71,7 +71,11 @@ function Navbar(props) {
               props.userAuth,
               <div>
                 <div className="avatarDiv" onClick={() => setVisible(!visible)}>
-                  <img className="caretDown" src={caretDown} alt="caret down" />
+                  <img
+                    className="lazyload caretDown"
+                    data-src={caretDown}
+                    alt="caret down"
+                  />
                   {profileImage}
                 </div>
                 <div
@@ -114,7 +118,11 @@ function Navbar(props) {
               target="_blank"
             >
               <span>
-                <img className="github" src={github} alt="github icon" />
+                <img
+                  className="lazyload github"
+                  data-src={github}
+                  alt="github icon"
+                />
               </span>{' '}
             </a>
           </li>
@@ -125,7 +133,11 @@ function Navbar(props) {
               target="_blank"
             >
               <span>
-                <img className="linkedin" src={linkedin} alt="linkedin icon" />
+                <img
+                  className="lazyload linkedin"
+                  data-src={linkedin}
+                  alt="linkedin icon"
+                />
               </span>
             </a>
           </li>

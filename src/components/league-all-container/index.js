@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,9 +21,9 @@ import { commentsFetchRequest } from '../../actions/comment-actions.js';
 import { topScoresFetchRequest } from '../../actions/scoreboard-actions.js';
 import { sportingEventsFetchRequest } from '../../actions/sportingEvent-actions.js';
 import { userPicksFetchRequest } from '../../actions/userPick-actions.js';
-import LeagueAllPrivateForm from '../league-all-private-form';
-import Table from '../helpers/table';
-import BannerAd from '../helpers/bannerAd';
+const LeagueAllPrivateForm = lazy(() => import('../league-all-private-form'));
+const Table = lazy(() => import('../helpers/table'));
+const BannerAd = lazy(() => import('../helpers/bannerAd'));
 import { userValidation, logError } from '../../lib/util.js';
 import users from './../helpers/assets/icons/users.icon.svg';
 import lock from './../helpers/assets/icons/lock.icon.svg';
@@ -106,7 +106,11 @@ function LeagueAllContainer(props) {
               <div className="mainContainer hideLarge">
                 <div className="mainContainer-header">
                   <div className="left">
-                    <img className="lock" src={lock} alt="lock icon" />
+                    <img
+                      className="lazyload lock"
+                      data-src={lock}
+                      alt="lock icon"
+                    />
                     <p className="mainContainerHeader">PRIVATE LEAGUES</p>
                   </div>
                 </div>
@@ -126,7 +130,11 @@ function LeagueAllContainer(props) {
               <div className="mainContainer">
                 <div className="mainContainer-header">
                   <div className="left">
-                    <img className="users" src={users} alt="users icon" />
+                    <img
+                      className="lazyload users"
+                      data-src={users}
+                      alt="users icon"
+                    />
                     <p className="mainContainerHeader">PUBLIC LEAGUES</p>
                   </div>
                   <div className="right">
@@ -168,7 +176,11 @@ function LeagueAllContainer(props) {
               <div className="mainContainer">
                 <div className="mainContainer-header">
                   <div className="left">
-                    <img className="lock" src={lock} alt="lock icon" />
+                    <img
+                      className="lazyload lock"
+                      data-src={lock}
+                      alt="lock icon"
+                    />
 
                     <p className="mainContainerHeader">PRIVATE LEAGUES</p>
                   </div>

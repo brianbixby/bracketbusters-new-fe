@@ -8,7 +8,11 @@ const Tooltip = props => (
     {renderIf(
       props.message && props.show,
       <section>
-        <img className="caret-up" src={caretUp} alt="caret up icon" />
+        <img
+          className="lazyload caret-up"
+          data-src={caretUp}
+          alt="caret up icon"
+        />
         <p> {props.message} </p>
       </section>
     )}

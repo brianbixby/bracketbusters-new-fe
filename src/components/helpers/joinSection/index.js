@@ -36,14 +36,18 @@ class JoinSection extends React.Component {
             {renderIf(
               this.props.joinType === 'league',
               <img
-                className="joingImg stephJoinImg"
-                src={steph}
+                className="lazyload joingImg stephJoinImg"
+                data-src={steph}
                 alt="Steph Curry"
               />
             )}
             {renderIf(
               this.props.joinType === 'group',
-              <img className="joingImg" src={russell} alt="Russell Westbrook" />
+              <img
+                className="lazyload joingImg"
+                data-src={russell}
+                alt="Russell Westbrook"
+              />
             )}
           </div>
         </div>
